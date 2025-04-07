@@ -1,16 +1,18 @@
 import React from "react";
-import DataPages from "../components/DataPages";
-import SilderSmooth from "../components/silderSmooth";
-import SilderStitke from "../components/silderStitke";
+import TurePreview from "../components/TurePreview";
+import Info from "../components/Info";
 import NewsLetter from "../components/NewsLetter";
+import Banner from "../components/banner";
+import Team from "../components/Team";
 
 const Home = () => {
   return (
     <>
-      <div>
-        <SilderSmooth />
-        <DataPages />
-        <SilderStitke />
+      <div id="Home">
+        <Banner silder={true} />
+        <TurePreview />
+        <Info title="Lidt om os" img="om-os.jpg" api="about" links={{link: "kontakt", name: "Kontakt os"}} />
+        <Team />
         <NewsLetter />
       </div>
     </>

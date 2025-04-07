@@ -7,7 +7,7 @@ const Layout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const newPageTitle = `Website - ${location.pathname}`;
+    const newPageTitle = `SpaceVenture - ${location.pathname}`;
     if (location.pathname === "/") {
       document.title = newPageTitle.replace("/", "home");
     } else {

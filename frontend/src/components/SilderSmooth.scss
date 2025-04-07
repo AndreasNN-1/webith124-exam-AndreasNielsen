@@ -1,51 +1,145 @@
 #SilderSmooth {
-    width: 100%;
-    height: 100dvh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .silder-container {
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 5vw 0;
-  
-    .silder-container {
-      display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+
+    .slide {
       width: 100%;
       height: 100%;
-      overflow: hidden;
       transition: transform 0.5s ease-in-out;
-  
-      .slide {
-        min-width: 100%;
-        transition: transform 0.5s ease-in-out;
-        position: relative;
+      position: relative;
 
+      .texts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0 12%;
+        z-index: 1;
+        color: var(--primary);
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+
+        h2 {
+          text-align: start;
+          font-size: 5rem;
+          line-height: 5rem;
+        }
+
+        p {
+          text-align: start;
+          font-size: 2rem;
+          line-height: 2rem;
+        }
+      }
+
+      &.active {
         .texts {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: white;
-          text-align: center;
-          z-index: 1;
-  
-          h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+          opacity: 1;
+          h2 {
+            animation: h2-fade-in 1.2s ease-out;
+
+            @keyframes h2-fade-in {
+              0% {
+                transform: translateY(100%);
+                opacity: 0;
+              }
+
+              50% {
+                transform: translateY(100%);
+                opacity: 0;
+              }
+
+              100% {
+                transform: translateY(0%);
+                opacity: 1;
+              }
+            }
           }
-  
+
           p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+            animation: p-fade-in 1.2s ease-out;
+
+            @keyframes p-fade-in {
+              0% {
+                transform: translateX(100%);
+                opacity: 0;
+              }
+
+              50% {
+                transform: translateX(100%);
+                opacity: 0;
+              }
+
+              100% {
+                transform: translateX(0%);
+                opacity: 1;
+              }
+            }
           }
         }
-  
-        .img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+      }
+
+      .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .dots-con {
+      position: absolute;
+      right: 5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .dot {
+        width: 1rem;
+        height: 1rem;
+        background-color: var(--secondary);
+        transition: background-color ease 200ms;
+        cursor: pointer;
+
+        &.active {
+          background-color: var(--highlight);
+          animation: move-in 150ms ease;
+
+          @keyframes move-in {
+            0% {
+              transform: translateX(0%);
+            }
+
+            50% {
+              transform: translateX(-100%);
+            }
+
+            100% {
+              transform: translateX(0%);
+            }
+          }
         }
       }
     }
   }
-  
+}

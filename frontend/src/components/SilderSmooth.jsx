@@ -15,6 +15,7 @@ const SilderSmooth = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  
   return (
     <div id="SilderSmooth">
       <div className="silder-container">
@@ -24,12 +25,12 @@ const SilderSmooth = () => {
           data.map((slide, index) => (
             <div
               key={index}
-              className="slide"
+              className={`slide ${currentIndex == index ? "active" : ""}`}
               style={{ transform: `translateY(-${currentIndex * 100}%)` }}
             >
               <div className="texts">
-              <h2>{slide.title}</h2>
-              <p>{slide.content}</p>
+                <p>{slide.content}</p>
+                <h2>{slide.title}</h2>
               </div>
               <img
                 src={`${APISTORAGE}banner/${slide.image}`}
@@ -37,26 +38,19 @@ const SilderSmooth = () => {
                 alt={`slide-${index}`}
               />
             </div>
-          ))}
-      </div>
-      <div>
-        <button
-          onClick={() =>
-            setCurrentIndex((prevIndex) =>
-              prevIndex === 0 ? data.length - 1 : prevIndex - 1
-            )
-          }
-        >
-          Prev
-        </button>
-
-        <button
-          onClick={() =>
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length)
-          }
-        >
-          Next
-        </button>
+          ))
+        }
+        {Array.isArray(data) && (
+          <div className="dots-con">
+            {data.map((_, index) => (
+              <div
+                key={index}
+                className={`dot ${currentIndex === index ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

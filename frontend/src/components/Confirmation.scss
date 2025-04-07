@@ -28,7 +28,7 @@
     width: 30rem;
     height: auto;
     background-color: var(--background-lige);
-    box-shadow: 0 0 1rem var(--background-lige);
+    box-shadow: 0 0 1rem var(--background-main);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,6 +67,7 @@
         text-align: center;
         font-size: 2rem;
         line-height: 2rem;
+        color: var(--primary);
       }
 
       p {
@@ -74,6 +75,7 @@
         text-align: center;
         font-size: 1rem;
         line-height: 1rem;
+        color: var(--secondary);
       }
     }
     .actions {
@@ -107,7 +109,7 @@
         height: 100%;
 
         path {
-          fill: var(--text-color);
+          fill: var(--primary);
         }
       }
     }

@@ -35,7 +35,7 @@
     .timebar {
       width: 0%;
       height: 100%;
-      background-color: var(--primary);
+      background-color: var(--highlight);
 
       @keyframes timer {
         0% {
@@ -76,7 +76,7 @@
         height: 85%;
 
         path {
-          fill: var(--background-lige);
+          fill: var(--primary);
         }
       }
     }
@@ -95,11 +95,13 @@
       h4 {
         font-size: 1rem;
         line-height: 1rem;
+        color: var(--primary);
       }
 
       p {
         font-size: 1rem;
         line-height: 1rem;
+        color: var(--secondary);
       }
     }
 
@@ -122,7 +124,7 @@
         cursor: pointer;
 
         path {
-          fill: var(--text-color);
+          fill: var(--primary);
         }
       }
     }

@@ -1,0 +1,91 @@
+#Info {
+    padding: 6rem 12%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6rem;
+
+    .OmOs {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6rem;
+
+        .Info-img-con {
+            width: 50%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .content {
+            height: 100%;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+            gap: 2rem;
+
+            h3 {
+                font-size: 3.2rem;
+                line-height: 3.2rem;
+                margin: 0;
+                padding: 0;
+            }
+
+            .title-con {
+                width: 100%;
+                height: auto;
+                border-bottom: 5px solid var(--secondary);
+                display: flex;
+
+                .title {
+                    width: auto;
+                    margin-right: auto;
+                    height: 100%;
+                    border-bottom: 5px solid var(--highlight);
+                    margin-bottom: -5px;
+
+                    p {
+                        font-size: 1.6rem;
+                        line-height: 1.6rem;
+                        padding-bottom: 0.75rem;
+                        color: var(--highlight);
+                    }
+                }
+            }
+
+            .text {
+                font-size: 1.1rem;
+            }
+
+            a {
+                width: auto;
+                height: auto;
+                font-size: 1.4rem;
+                text-decoration: none;
+                color: var(--secondary);
+                padding: 1rem 3rem;
+                background-color: var(--highlight);
+                border: 2px solid transparent;
+                transition: all ease 400ms;
+
+                &:hover {
+                    background-color: var(--primary);
+                    color: var(--text-color);
+                    border: 2px solid var(--text-color);
+                }
+            }
+        }
+    }
+}

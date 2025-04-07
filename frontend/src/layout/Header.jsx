@@ -1,65 +1,86 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
+import { FaFacebookF, FaTwitter, FaGooglePlusG, FaInstagram } from "react-icons/fa";
 import "./Header.scss";;
 
 const Header = () => {
   const { user } = useContext(LoginContext);
   const [isMobileMenuActive, setMobileMenuActive] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-  const Loca = useLocation();
+  const [scrolling, setScrolling] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuActive((prevState) => !prevState);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && searchTerm.trim()) {
-      navigate(`/search/${searchTerm}`);
-      toggleMobileMenu();
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
     }
   };
 
   useEffect(() => {
-    if (Loca.pathname.split("/")[1] === "search") {
-      setSearchTerm("");
-    }
-  }, [Loca.pathname]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header>
-      <nav>
+    <header className={scrolling ? "scrolling" : ""}>
+      <div className="logo-container">
         <NavLink to="/" className="logo">
-          <img src="/SiteAssets/logo.png" alt="logo" />
+          <img src="/SiteAssets/icons/logo.png" alt="logo" />
         </NavLink>
+      </div>
+      <nav>
         <menu>
           <li>
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}>
-              Home
+              <div className="bar" />
+              <span>Hjem</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/about"
+              to="/rumfærgen"
               className={({ isActive }) => (isActive ? "active" : "")}>
-              About
+              <div className="bar" />
+              <span>Rumfærgen</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/info"
+              to="/ture"
               className={({ isActive }) => (isActive ? "active" : "")}>
-              Info
+              <div className="bar" />
+              <span>Ture</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/coolstuff"
+              to="/galleri"
               className={({ isActive }) => (isActive ? "active" : "")}>
-              Cool Stuff
+              <div className="bar" />
+              <span>Galleri</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/sikkerhed"
+              className={({ isActive }) => (isActive ? "active" : "")}>
+              <div className="bar" />
+              <span>Sikkerhed</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/kontakt"
+              className={({ isActive }) => (isActive ? "active" : "")}>
+              <div className="bar" />
+              <span>Kontakt</span>
             </NavLink>
           </li>
           {user &&
@@ -67,26 +88,32 @@ const Header = () => {
               <NavLink
                 to="/admin/dashboard"
                 className={({ isActive }) => (isActive ? "active" : "")}>
-                Dashboard
+                <div className="bar" />
+                <span>Dashboard</span>
               </NavLink>
             </li>
           }
-          <li>
-            <input
-              type="search"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-          </li>
-        </menu>
-        <div className="burger-menu-container">
-          <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={toggleMobileMenu}>
-            <div className="bar" />
-            <div className="bar" />
-            <div className="bar" />
+          <div className="burger-menu-container">
+            <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={toggleMobileMenu}>
+              <div className="bar" />
+              <div className="bar" />
+              <div className="bar" />
+            </div>
           </div>
+        </menu>
+        <div className="socials">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+            <FaFacebookF />
+          </a>
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+            <FaTwitter />
+          </a>
+          <a href="https://support.google.com/" target="_blank" rel="noopener noreferrer">
+            <FaGooglePlusG />
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+            <FaInstagram />
+          </a>
         </div>
       </nav>
       <div className={`mobile-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Mobilmenu">
@@ -121,14 +148,6 @@ const Header = () => {
               onClick={toggleMobileMenu}
               className={({ isActive }) => (isActive ? "active" : "")}>
               Cool Stuff
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/search"
-              onClick={toggleMobileMenu}
-              className={({ isActive }) => (isActive ? "active" : "")}>
-              Search
             </NavLink>
           </li>
           {user &&

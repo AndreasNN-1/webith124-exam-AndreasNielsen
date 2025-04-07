@@ -18,8 +18,8 @@ const Confirmation = ({ ConfirmationData, ConfirmationOutput }) => {
           <p>{ConfirmationData.text}</p>
         </div>
         <div className="actions">
-          <button onClick={() => ConfirmationOutput("Confirmed")}>Yes</button>
-          <button onClick={() => ConfirmationOutput("Canceled")}>No</button>
+          <button onClick={() => ConfirmationOutput("Confirmed")}>ja</button>
+          <button onClick={() => ConfirmationOutput("Canceled")}>nej</button>
         </div>
       </div>
     </div>
