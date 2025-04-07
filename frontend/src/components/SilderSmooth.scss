@@ -1,6 +1,6 @@
 #SilderSmooth {
-    width: 20%;
-    height: auto;
+    width: 100%;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,12 +10,35 @@
     .silder-container {
       display: flex;
       width: 100%;
+      height: 100%;
       overflow: hidden;
       transition: transform 0.5s ease-in-out;
   
       .slide {
         min-width: 100%;
         transition: transform 0.5s ease-in-out;
+        position: relative;
+
+        .texts {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          text-align: center;
+          z-index: 1;
+  
+          h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+          }
+  
+          p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+          }
+        }
   
         .img {
           width: 100%;

@@ -7,6 +7,7 @@ const LoginContextProvider = (props) => {
   const { RunNotification } = useContext(NotificationContext);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const APIURL = import.meta.env.VITE_APP_API;
 
   // check log in
   useEffect(() => {
