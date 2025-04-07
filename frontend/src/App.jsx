@@ -21,11 +21,11 @@ function App() {
         { path: "/", element: <Home /> },
         { path: "/rumfærgen", element: <Rumfærgen /> },
         { path: "/ture", element: <Ture /> },
+        { path: "/ture/:id", element: <UdvalgtTur /> },
         { path: "/galleri", element: <Galleri /> },
         { path: "/sikkerhed", element: <Sikkerhed /> },
         { path: "/kontakt", element: <Kontakt /> },
         { path: "/login", element: <Login /> },
-        { path: "/udvalgt-tur/:id", element: <UdvalgtTur /> },
       ],
     },
     {

@@ -1,11 +1,13 @@
 import React from "react";
-import SilderSmooth from "../components/SilderSmooth";
+import Banner from "../components/banner";
+import Trips from "../components/Trips";
 
 const Ture = () => {
   return (
     <>
       <div id="Ture">
-        <SilderSmooth />
+        <Banner custom={{ img: "banner-ture.jpg", text: "Ture" }} />
+        <Trips />
       </div>
     </>
   );

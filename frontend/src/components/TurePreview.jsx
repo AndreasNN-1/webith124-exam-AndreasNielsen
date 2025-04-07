@@ -18,7 +18,7 @@ const TurePreview = () => {
                 {isLoading && <Loader />}
                 {error && <Error />}
                 {data && data.map((item, index) => (
-                    <NavLink to={`/udvalgt-tur/${item.destination}`} key={index} className="item">
+                    <NavLink to={`/ture/${item.destination}`} key={index} className="item">
                         <div className="texts">
                             <p>{item.destination}</p>
                         </div>

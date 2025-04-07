@@ -20,7 +20,7 @@
   --text-color: rgb(0, 0, 0);
   --text-fade: rgb(48, 48, 48);
 
-  background-color: var(--primary);
+  background-color: var(--background-lige);
   color: var(--text-color);
 
   font-family: startFont;

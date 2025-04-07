@@ -1,4 +1,36 @@
 #Gallery {
+    background-color: var(--primary);
     width: 100%;
     height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0;
+    padding-bottom: 4rem;
+    gap: 2rem;
+
+    h3 {
+        font-size: 3rem;
+    }
+
+    .Gallery-con {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .item {
+            width: calc(25% - 1rem);
+            height: auto;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
 }
