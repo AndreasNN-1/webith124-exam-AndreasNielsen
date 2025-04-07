@@ -1,0 +1,143 @@
+#Login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+
+    .LoginForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2dvh;
+        background-color: var(--background-lige);
+        padding: 3dvh;
+        border-radius: 2dvh;
+
+        .logintitle {
+            font-size: 4dvh;
+            color: var(--text-color);
+        }
+
+        .LoginBox {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 1.2dvh;
+            overflow: hidden;
+            box-shadow: 0 0 1dvh var(--background-main);
+            height: 8dvh;
+
+            .LoginLabel {
+                font-size: 2dvh;
+                color: var(--text-fade);
+                background-color: var(--background-fade);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: auto;
+                height: 100%;
+                aspect-ratio: 1;
+            }
+
+            #email,
+            #password {
+                background-color: var(--background-lige);
+                width: 100%;
+                height: 100%;
+                font-size: 2dvh;
+                padding: 0 2dvh;
+                box-sizing: border-box;
+                border: none;
+                outline: none;
+                color: var(--text-color);
+
+                &:focus {
+                    background-color: var(--background-main);
+                }
+            }
+        }
+
+        .errorText {
+            width: 100%;
+            text-wrap: wrap;
+            font-size: 1.6dvh;
+            color: red;
+            animation: wrong 500ms ease;
+
+            @keyframes wrong {
+                0% {
+                    color: red;
+                }
+
+                25% {
+                    color: rgb(122, 0, 0);
+                }
+
+                50% {
+                    color: red;
+                }
+
+                75% {
+                    color: rgb(122, 0, 0);
+                }
+
+                100% {
+                    color: red;
+                }
+            }
+        }
+
+        .loginButton {
+            width: 100%;
+            height: auto;
+            font-size: 2.8dvh;
+            padding: 0.8dvh 0;
+            border-radius: 1.2dvh;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding: 0 5vw;
+
+        .LoginForm {
+            width: 100%;
+            gap: 5vw;
+            padding: 3vw;
+            border-radius: 3vw;
+
+            .logintitle {
+                font-size: 10vw;
+            }
+
+            .LoginBox {
+                width: 100%;
+                border-radius: 3vw;
+                box-shadow: 0 0 1.6vw var(--background-main);
+
+                .LoginLabel {
+                    font-size: 5vw;
+                }
+
+                #email,
+                #password {
+                    font-size: 5vw;
+                    padding: 3vw;
+                }
+            }
+
+            .errorText {
+                font-size: 4vw;
+            }
+
+            .loginButton {
+                font-size: 7vw;
+                padding: 2vw 0;
+                border-radius: 3vw;
+            }
+        }
+    }
+}

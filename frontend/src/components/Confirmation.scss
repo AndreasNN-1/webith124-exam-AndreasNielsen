@@ -1,0 +1,115 @@
+.Confirmation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  animation: fade-back 300ms ease;
+  z-index: 3;
+
+  @keyframes fade-back {
+    0% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    100% {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .Confirmation {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30rem;
+    height: auto;
+    background-color: var(--background-lige);
+    box-shadow: 0 0 1rem var(--background-lige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    animation: fade-down 300ms ease;
+    padding: 1rem;
+    gap: 1rem;
+
+    @keyframes fade-down {
+      0% {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate(-50%, -0%);
+        opacity: 1;
+      }
+    }
+
+    .texts {
+      flex: 1;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      margin: 0;
+      padding: 0 1rem;
+      gap: 1rem;
+
+      h4 {
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+        line-height: 2rem;
+      }
+
+      p {
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1rem;
+      }
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+
+      button {
+        font-size: 1.2rem;
+        width: 5rem;
+      }
+    }
+
+    .close {
+      width: 1.6rem;
+      height: 1.6rem;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      svg {
+        transform: scale(1.5);
+        width: 100%;
+        height: 100%;
+
+        path {
+          fill: var(--text-color);
+        }
+      }
+    }
+  }
+}
