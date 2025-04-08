@@ -2,12 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import { FaFacebookF, FaTwitter, FaGooglePlusG, FaInstagram } from "react-icons/fa";
-import "./Header.scss";;
+import "./Header.scss"; import useRequstData from "../hooks/useRequstData";
+;
 
 const Header = () => {
   const { user } = useContext(LoginContext);
   const [isMobileMenuActive, setMobileMenuActive] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const { makeRequest, isLoading, data, error } = useRequstData();
+  const APIURL = import.meta.env.VITE_APP_API;
+  useEffect(() => {
+    makeRequest(`${APIURL}tours`, "GET");
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuActive((prevState) => !prevState);
@@ -62,13 +68,30 @@ const Header = () => {
               <span>Rumfærgen</span>
             </NavLink>
           </li>
-          <li>
+          <li className="extra">
             <NavLink
               to="/ture"
-              className={({ isActive }) => (isActive ? "active" : "")}>
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <div className="bar" />
               <span>Ture</span>
             </NavLink>
+
+            <ul className="extra-links">
+              {data && data.length > 0 ? (
+                data.map((item, index) => (
+                  <li key={index}>
+                    <NavLink
+                      to={`/ture/${item._id}`}
+                      className={({ isActive }) => (isActive ? "active" : "")}>
+                      {item.destination}
+                    </NavLink>
+                  </li>
+                ))
+              ) : (
+                <li><span>Ingen ture</span></li>
+              )}
+            </ul>
           </li>
           <li>
             <NavLink
@@ -125,42 +148,58 @@ const Header = () => {
           <li>
             <NavLink
               to="/"
-              onClick={toggleMobileMenu}
+              onClick={() => toggleMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
-              Home
+              <span>Hjem</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/about"
-              onClick={toggleMobileMenu}
+              to="/rumfærgen"
+              onClick={() => toggleMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
-              About
+              <span>Rumfærgen</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/info"
-              onClick={toggleMobileMenu}
+              to="/ture"
+              onClick={() => toggleMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
-              Info
+              <span>Ture</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/coolstuff"
-              onClick={toggleMobileMenu}
+              to="/galleri"
+              onClick={() => toggleMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
-              Cool Stuff
+              <span>Galleri</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/sikkerhed"
+              onClick={() => toggleMobileMenu()}
+              className={({ isActive }) => (isActive ? "active" : "")}>
+              <span>Sikkerhed</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/kontakt"
+              onClick={() => toggleMobileMenu()}
+              className={({ isActive }) => (isActive ? "active" : "")}>
+              <span>Kontakt</span>
             </NavLink>
           </li>
           {user &&
             <li>
               <NavLink
                 to="/admin/dashboard"
-                onClick={toggleMobileMenu}
+                onClick={() => toggleMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
-                Dashboard
+                <span>Dashboard</span>
               </NavLink>
             </li>
           }

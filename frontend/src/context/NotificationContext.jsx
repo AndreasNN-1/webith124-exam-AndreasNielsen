@@ -17,7 +17,7 @@ const NotificationContextProvider = ({ children }) => {
   });
 
   const generateUniqueId = () => {
-    return Math.random().toString(36).substr(2, 9);
+    return Math.random().toString(10);
   };
 
   const RunNotification = (status, title, text) => {

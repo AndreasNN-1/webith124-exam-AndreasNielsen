@@ -1,38 +1,54 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./Footer.scss"
+import useRequstData from "../hooks/useRequstData";
 import { FaFacebookF, FaGooglePlusG, FaInstagram, FaRegCopyright, FaTwitter, FaDirections } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoMdMail } from "react-icons/io";
 import { LoginContext } from '../context/LoginContext';
 import { NavLink } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
+
 const Footer = () => {
     const { user } = useContext(LoginContext);
+    const { makeRequest, isLoading, data, error } = useRequstData();
+    const APIURL = import.meta.env.VITE_APP_API;
+    useEffect(() => {
+        makeRequest(`${APIURL}footer`, "GET");
+    }, []);
+
     return (
         <footer>
             <menu>
                 <div className='kontact'>
                     <h5>KONTAKT</h5>
-                    <ul>
-                        <li>
-                            <a href="tel:+4586351003" target='_blank'>
-                                <BsFillTelephoneFill />
-                                <span>+45 86 35 10 03</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:info@spaceventure.dk" target='_blank'>
-                                <IoMdMail />
-                                <span>info@spaceventure.dk</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.google.pl/maps/search/Galaksevej+39,+8000+%C3%85rhus" target='_blank'>
-                                <FaDirections />
-                                <span>Galaksevej 39, 8000 Århus</span>
-                            </a>
-                        </li>
-                    </ul>
+                    {data &&
+                        <ul>
+                            {data.phone ? (
+                                <li>
+                                    <a href={`tel:${data.phone}`} target='_blank'>
+                                        <BsFillTelephoneFill />
+                                        <span>{data.phone}</span>
+                                    </a>
+                                </li>
+                            ) : null}
+                            {data.email ? (
+                                <li>
+                                    <a href={`mailto:${data.email}`} target='_blank'>
+                                        <IoMdMail />
+                                        <span>{data.email}</span>
+                                    </a>
+                                </li>
+                            ) : null}
+                            {data.address ? (
+                                <li>
+                                    <a href={`https://www.google.pl/maps/search/${data.address.replace(/ /g, "+")}`} target='_blank'>
+                                        <FaDirections />
+                                        <span>{data.address}</span>
+                                    </a>
+                                </li>
+                            ) : null}
+                        </ul>
+                    }
                 </div>
                 <div className='links'>
                     <h5>HURTIG LINKS</h5>

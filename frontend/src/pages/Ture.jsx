@@ -4,10 +4,10 @@ import Trips from "../components/Trips";
 
 const Ture = () => {
   return (
-    <div id="Ture">
+    <section id="Ture">
       <Banner custom={{ img: "banner-ture.jpg", text: "Ture" }} />
       <Trips />
-    </div>
+    </section>
   );
 };
 

@@ -19,13 +19,6 @@ const Info = ({ title, img, api, links }) => {
         makeRequestOm(`${APIURL}${api}`, "GET");
     }, []);
 
-    if (isLoadingOm) {
-        return <Loader />;
-    }
-
-    if (errorOm) {
-        return <Error />;
-    }
 
     return (
         <div id="Info">
@@ -33,6 +26,8 @@ const Info = ({ title, img, api, links }) => {
                 <div className="Info-img-con">
                     <img src={`${APPSTORAGE}${img}`} alt="om-os" />
                 </div>
+                {isLoadingOm && <Loader />}
+                {errorOm && <Error />}
                 {dataOm && (
                     <div className="content">
                         <h3>{title}</h3>

@@ -1,9 +1,7 @@
 #SilderSmooth {
   width: 100%;
-  height: 100%;
+  height: 68vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 
   .silder-container {
@@ -17,9 +15,15 @@
 
     .slide {
       width: 100%;
-      height: 100%;
+      height: 68vh;
       transition: transform 0.5s ease-in-out;
       position: relative;
+
+      .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
       .texts {
         position: absolute;
@@ -53,6 +57,7 @@
       &.active {
         .texts {
           opacity: 1;
+
           h2 {
             animation: h2-fade-in 1.2s ease-out;
 
@@ -96,12 +101,6 @@
           }
         }
       }
-
-      .img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
 
     .dots-con {
@@ -138,6 +137,81 @@
               transform: translateX(0%);
             }
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1300px) {
+    height: 60vh;
+    max-height: 60vw;
+
+    .silder-container {
+      .slide {
+        height: 60vh;
+        max-height: 60vw;
+
+        .texts {
+          padding: 0 5%;
+          max-width: 65%;
+
+          h2 {
+            font-size: 4rem;
+            line-height: 4rem;
+          }
+
+          p {
+            font-size: 1.8rem;
+            line-height: 1.8rem;
+          }
+        }
+      }
+
+      .dots-con {
+        right: 5%;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    height: 100vh;
+    max-height: 100vh;
+
+    .silder-container {
+      .slide {
+        height: 100vh;
+        max-height: 100vh;
+
+        .img {
+          width: 100%;
+          height: 100vh;
+          object-fit: cover;
+        }
+
+        .texts {
+          padding: 0 5%;
+          max-width: 90%;
+          gap: 3vw;
+
+          h2 {
+            font-size: 10vw;
+            line-height: 10vw;
+          }
+
+          p {
+            font-size: 7vw;
+            line-height: 7vw;
+          }
+        }
+      }
+
+      .dots-con {
+        right: 5%;
+        gap: 1rem;
+
+        .dot {
+          width: 1rem;
+          height: 1rem;
         }
       }
     }

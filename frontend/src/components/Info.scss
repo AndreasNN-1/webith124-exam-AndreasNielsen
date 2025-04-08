@@ -7,10 +7,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 6rem;
 
     .OmOs {
         width: 100%;
+        max-width: 1400px;
         height: auto;
         display: flex;
         justify-content: center;
@@ -85,6 +85,95 @@
                     background-color: var(--primary);
                     color: var(--text-color);
                     border: 2px solid var(--text-color);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1300px) {
+        padding: 5rem 5%;
+
+        .OmOs {
+            gap: 3%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding: 4rem 4%;
+        .OmOs {
+            width: 100%;
+            max-width: 100%;
+            flex-direction: column;
+            gap: 3rem;
+
+            .Info-img-con {
+                width: 100%;
+            }
+
+            .content {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+
+                h3 {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 2.5rem;
+                    line-height: 2.5rem;
+                }
+
+                .title-con {
+                    width: 100%;
+                    height: auto;
+                    border-bottom: 1px solid var(--highlight);
+                    border-top: 1px solid var(--highlight);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .title {
+                        width: 100%;
+                        margin-right: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        border: none;
+                        margin-bottom: 0;
+
+                        p {
+                            font-size: 1.6rem;
+                            line-height: 1.6rem;
+                            padding: 0.5rem 0;
+                        }
+                    }
+                }
+
+                .text {
+                    font-size: 1rem;
+                }
+
+                a {
+                    width: auto;
+                    height: auto;
+                    font-size: 1.2rem;
+                    text-decoration: none;
+                    color: var(--secondary);
+                    padding: 0.85rem 2.5rem;
+                    background-color: var(--highlight);
+                    border: 2px solid transparent;
+                    transition: all ease 400ms;
+
+                    &:hover {
+                        background-color: var(--primary);
+                        color: var(--text-color);
+                        border: 2px solid var(--text-color);
+                    }
                 }
             }
         }

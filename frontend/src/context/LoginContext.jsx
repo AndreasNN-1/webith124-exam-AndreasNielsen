@@ -5,16 +5,16 @@ import useRequstData from "../hooks/useRequstData";
 export const LoginContext = createContext();
 
 const LoginContextProvider = (props) => {
+  const [loading, setLoading] = useState(true);
   const { makeRequest: makeRequestlogin, isLoading: isLoadinglogin, data: datalogin, error: errorlogin } = useRequstData();
   const { makeRequest: makeRequestClecklogin, isLoading: isLoadingClecklogin, data: dataClecklogin, error: errorClecklogin } = useRequstData();
   const { makeRequest: makeRequestlogOut, isLoading: isLoadinglogOut, data: datalogOut, error: errorlogOut } = useRequstData();
   const { RunNotification } = useContext(NotificationContext);
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const APIURL = import.meta.env.VITE_APP_API;
   const storedUser = localStorage.getItem('user');
 
-  // chack Log in
+  // Check Log in
   useEffect(() => {
     makeRequestClecklogin(`${APIURL}login/loggedin`, "GET");
   }, []);
@@ -29,14 +29,8 @@ const LoginContextProvider = (props) => {
       setUser(null);
       localStorage.removeItem("user");
     }
-    setIsLoading(false);
+    setLoading(false);
   }, [dataClecklogin, errorClecklogin]);
-
-
-
-
-
-
 
   // Log in
   const signIn = (inputIdentity, inputPassword) => {
@@ -50,9 +44,8 @@ const LoginContextProvider = (props) => {
   useEffect(() => {
     if (!isLoadinglogin) {
       if (datalogin) {
-        console.log(datalogin);
         localStorage.setItem("user", JSON.stringify(datalogin));
-        setUser(JSON.stringify(datalogin));
+        setUser(datalogin);
         RunNotification(200, "Login", "med succes logget ind!");
       }
       if (errorlogin) {
@@ -61,7 +54,6 @@ const LoginContextProvider = (props) => {
       }
     }
   }, [datalogin, errorlogin, isLoadinglogin]);
-
 
   // Log out
   const signOut = () => {
@@ -78,6 +70,10 @@ const LoginContextProvider = (props) => {
       console.error("Error: " + errorlogOut);
     }
   }, [datalogOut, errorlogOut]);
+
+  if (loading) {
+    return null;
+}
 
   return (
     <LoginContext.Provider value={{ signIn, signOut, user }}>

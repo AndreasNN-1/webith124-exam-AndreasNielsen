@@ -6,16 +6,16 @@ import "./LayoutAdmin.scss";
 
 const LayoutAdmin = () => {
   const { user } = useContext(LoginContext);
-  if (user === null) {
-    return <Navigate to="/login" replace />;
-  }
-
   const location = useLocation();
 
   useEffect(() => {
     const newPageTitle = location.pathname.slice(1).split("/").join(" - ");
     document.title = newPageTitle;
   }, [location]);
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div id="Admin">

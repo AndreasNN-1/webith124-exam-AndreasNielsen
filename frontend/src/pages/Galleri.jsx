@@ -3,11 +3,9 @@ import SilderSmooth from "../components/SilderSmooth";
 
 const Galleri = () => {
   return (
-    <>
-      <div id="Galleri">
-  
-      </div>
-    </>
+    <section id="Galleri">
+
+    </section>
   );
 };
 

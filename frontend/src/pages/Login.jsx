@@ -6,13 +6,11 @@ import "./Login.scss";
 
 const Login = () => {
     const { signIn, user } = useContext(LoginContext);
-    if (user !== null) {
-        return <Navigate to="/admin/dashboard" replace />;
-    }
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    if (user) return <Navigate to="/admin/dashboard" replace />;
 
     const validate = async (email, password) => {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -37,7 +35,7 @@ const Login = () => {
     };
 
     return (
-        <div id="Login">
+        <section id="Login">
             <form className="LoginForm" onSubmit={submitLogin}>
                 <h1 className="logintitle">Login</h1>
                 <div className="LoginBox">
@@ -74,7 +72,7 @@ const Login = () => {
                 {errorMessage && <p className="errorText">{errorMessage}</p>}
                 <button className="loginButton" type="submit">Login</button>
             </form>
-        </div>
+        </section>
     );
 };
 

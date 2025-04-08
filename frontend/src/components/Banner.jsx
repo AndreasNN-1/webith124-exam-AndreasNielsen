@@ -7,9 +7,8 @@ const Banner = ({ silder, custom }) => {
     return (
         <div id="banner">
             {silder &&
-                <div className="silder-con">
-                    <SilderSmooth />
-                </div>}
+                <SilderSmooth />
+            }
             {custom && (
                 <div className="custom">
                     <img src={`${APPSTORAGE}${custom.img}`} alt={custom.img.slice(".")[0]} />

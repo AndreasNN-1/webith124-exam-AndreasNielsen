@@ -61,6 +61,10 @@ main {
   flex-direction: column;
 }
 
+main section {
+  background-color: var(--primary);
+}
+
 button {
   font-size: 1rem;
   color: var(--primary);
@@ -88,6 +92,6 @@ button:hover {
 
 @media (max-width: 767px) { 
   main {
-    margin-top: 4.3rem;
+    margin-top: 3.5rem;
   }
 }

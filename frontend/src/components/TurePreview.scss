@@ -74,4 +74,29 @@
             }
         }
     }
+
+    @media (max-width: 1300px) {
+        .Tures {
+            padding: 0 5%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding: 3rem 5%;
+        flex-direction: column;
+
+        .Tures {
+            flex-direction: column-reverse;
+            width: 100%;
+            margin-top: 0;
+
+            .item {
+                width: 100%;
+                max-width: 28rem;
+                .texts {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
 }

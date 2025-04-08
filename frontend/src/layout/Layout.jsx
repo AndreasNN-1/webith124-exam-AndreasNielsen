@@ -1,9 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
+import { LoginContext } from "../context/LoginContext";
+import Loader from "../components/Loader";
 
 const Layout = () => {
+  const { loading } = useContext(LoginContext);
+  if (loading) {
+    return <Loader />;
+  }
+
   const location = useLocation();
 
   useEffect(() => {
@@ -16,7 +23,7 @@ const Layout = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'instant'
+      behavior: 'instant',
     });
   }, [location]);
 
