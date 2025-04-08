@@ -10,6 +10,8 @@
     gap: 3rem;
 
     .Trips-item {
+        width: 100%;
+        max-width: 1600px;
         display: flex;
         justify-content: center;
         align-items: stretch;

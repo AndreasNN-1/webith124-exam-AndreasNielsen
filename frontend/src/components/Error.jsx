@@ -1,8 +1,10 @@
 import React from 'react'
-
+import "./Error.scss";
 const Error = () => {
   return (
-    <p>Der opstod en fejl...</p>
+    <div className='error'>
+      <p>Der opstod en fejl...</p>
+    </div>
   )
 }
 

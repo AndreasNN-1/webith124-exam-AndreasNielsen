@@ -35,7 +35,7 @@ const Trips = () => {
                         <p className="title">{item.title}</p>
                         <div className="content" dangerouslySetInnerHTML={{ __html: item.content }} />
                         <CountdownTimer launchDate={item.spacelaunch} />
-                        <NavLink Link to={`/ture/${item._id}`}>Se mere</NavLink>
+                        <NavLink to={`/ture/${item._id}`}>Se mere</NavLink>
                     </div>
                 </div>
             ))}
