@@ -32,10 +32,7 @@ const Login = () => {
         if (validation.valit === false) {
             setErrorMessage(validation.message);
         } else {
-            const result = await signIn(email, password);
-            if (result.status === 401) {
-                setErrorMessage(result.message);
-            }
+            signIn(email, password);
         }
     };
 

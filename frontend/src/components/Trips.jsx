@@ -8,35 +8,13 @@ import { NavLink } from "react-router-dom";
 
 const Trips = () => {
     const APIURL = import.meta.env.VITE_APP_API;
+    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const {
         makeRequest: makeRequest,
         isLoading: isLoading,
         data: data,
         error: error,
     } = useRequstData();
-
-    const calculateTimeLeft = () => {
-        const difference = new Date(launchDate) - new Date();
-        let timeLeft = {};
-
-        if (difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
-            };
-        } else {
-            timeLeft = {
-                days: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-            };
-        }
-
-        return timeLeft;
-    };
 
     useEffect(() => {
         makeRequest(`${APIURL}tours`, "GET");
@@ -48,7 +26,7 @@ const Trips = () => {
             {data && data.map((item, index) => (
                 <div key={index} className="Trips-item">
                     <figure className="image">
-                        <img src={`/SiteAssets/images/${item.image1}`} alt={item.destination} />
+                        <img src={`${APPSTORAGE}${item.image1}`} alt={item.destination} />
                     </figure>
                     <div className="info">
                         <div className="price">
@@ -57,7 +35,7 @@ const Trips = () => {
                         <p className="title">{item.title}</p>
                         <div className="content" dangerouslySetInnerHTML={{ __html: item.content }} />
                         <CountdownTimer launchDate={item.spacelaunch} />
-                        <NavLink Link to={`/ture/${item.destination}`}>Se mere</NavLink>
+                        <NavLink Link to={`/ture/${item._id}`}>Se mere</NavLink>
                     </div>
                 </div>
             ))}

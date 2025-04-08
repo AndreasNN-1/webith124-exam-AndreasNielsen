@@ -34,10 +34,9 @@ const HomeAdmin = () => {
     error: errorDELETE,
   } = useRequstData();
 
-  // get data
-  useEffect(() => {
-    makeRequestGET(`${apiURL}coffeerecipes`, "GET");
-  }, []);
+  // useEffect(() => {
+  //   makeRequestGET(`${apiURL}coffeerecipes`, "GET");
+  // }, []);
 
   /* ============================
    Edit Form Start

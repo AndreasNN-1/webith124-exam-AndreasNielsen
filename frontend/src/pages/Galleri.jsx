@@ -5,7 +5,7 @@ const Galleri = () => {
   return (
     <>
       <div id="Galleri">
-        <SilderSmooth />
+  
       </div>
     </>
   );

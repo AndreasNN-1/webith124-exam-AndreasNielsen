@@ -8,6 +8,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 const TurePreview = () => {
     const APIURL = import.meta.env.VITE_APP_API;
+    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const { makeRequest, isLoading, data, error } = useRequstData();
     useEffect(() => {
         makeRequest(`${APIURL}tours`, "GET");
@@ -18,12 +19,12 @@ const TurePreview = () => {
                 {isLoading && <Loader />}
                 {error && <Error />}
                 {data && data.map((item, index) => (
-                    <NavLink to={`/ture/${item.destination}`} key={index} className="item">
+                    <NavLink to={`/ture/${item._id}`} key={index} className="item">
                         <div className="texts">
                             <p>{item.destination}</p>
                         </div>
                         <img
-                            src={item.destination === "Mars" ? "/SiteAssets/images/mars-btn.jpg" : "/SiteAssets/images/moon-btn.jpg"}
+                            src={`${APPSTORAGE}${item.destination === "Mars" ? "mars" : "moon"}-btn.jpg`}
                             className="img"
                             alt={`item-${item.image1}`}
                         />
@@ -31,7 +32,7 @@ const TurePreview = () => {
                 ))
                 }
             </div>
-            <NavLink to="/ture" >Vores ture <FaLongArrowAltRight /></NavLink>
+            <NavLink to="/ture" >Vores ture<FaLongArrowAltRight /></NavLink>
         </div>
     );
 };

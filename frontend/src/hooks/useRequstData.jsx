@@ -15,6 +15,7 @@ const useRequstData = () => {
             const config = {
                 headers,
                 params,
+                withCredentials: true,
               };
             switch (method) {
                 case "GET":

@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const Info = ({ title, img, api, links }) => {
     const APIURL = import.meta.env.VITE_APP_API;
+    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const {
         makeRequest: makeRequestOm,
         isLoading: isLoadingOm,
@@ -30,7 +31,7 @@ const Info = ({ title, img, api, links }) => {
         <div id="Info">
             <div className="OmOs">
                 <div className="Info-img-con">
-                    <img src={`/SiteAssets/images/${img}`} alt="om-os" />
+                    <img src={`${APPSTORAGE}${img}`} alt="om-os" />
                 </div>
                 {dataOm && (
                     <div className="content">

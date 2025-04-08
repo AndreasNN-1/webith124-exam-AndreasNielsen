@@ -6,6 +6,7 @@ import "./Gallery.scss";
 
 const Gallery = () => {
     const APIURL = import.meta.env.VITE_APP_API;
+    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const {
         makeRequest: makeRequest,
         isLoading: isLoading,
@@ -24,7 +25,7 @@ const Gallery = () => {
                 {error && <Error />}
                 {data && data.map((item, index) => (
                     <div key={index} className='item'>
-                        <img src={`/SiteAssets/images/${item.image}`} alt={`${item.imagetext}`} />
+                        <img src={`${APPSTORAGE}${item.image}`} alt={`${item.imagetext}`} />
                     </div>
                 ))}
             </div>

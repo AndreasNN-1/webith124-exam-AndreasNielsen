@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import { NotificationContext } from "../../context/NotificationContext";
@@ -9,8 +9,8 @@ import { LuPanelLeftClose } from "react-icons/lu";
 
 import "./NavAdmin.scss";
 
-const NavAdmin = ({ user }) => {
-  const { signOut } = useContext(LoginContext);
+const NavAdmin = () => {
+  const { signOut, user } = useContext(LoginContext);
   const { RunConfirmation } = useContext(NotificationContext);
   const [closed, setClosed] = useState(false);
   const [open, setOpen] = useState(false);
@@ -33,7 +33,7 @@ const NavAdmin = ({ user }) => {
     <nav id="Admin-Nav" className={closed ? "closed" : ""}>
       <div className="site-logo">
         <NavLink to="/admin/dashboard" className="logo">
-          <img src="/SiteAssets/logo.png" alt="logo" />
+          <img src="/SiteAssets/icons/favicon.ico" alt="logo" />
         </NavLink>
         <div className="button-con">
           <button id="OpenToggle" onClick={() => setClosed(!closed)}>
@@ -88,7 +88,7 @@ const NavAdmin = ({ user }) => {
           </NavLink>
         </li>
         <li>
-          <button class="LogOut" onClick={() => Logout()}>
+          <button className="LogOut" onClick={() => Logout()}>
             <span>logout</span>
             <MdLogout />
           </button>
@@ -98,13 +98,13 @@ const NavAdmin = ({ user }) => {
         <div className="profile">
           <figure>
             <img
-              src="/SiteAssets/profile.jpg"
+              src="/SiteAssets/images/Jill.jpg"
               alt="profile image"
             />
           </figure>
-          <h5>{user.split("@")[0]}</h5>
+          <h5>{user ? user.name : "user"}</h5>
         </div>
-        <button class="LogOut" onClick={() => Logout()}>
+        <button className="LogOut" onClick={() => Logout()}>
           <span>logout</span>
           <MdLogout />
         </button>

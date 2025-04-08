@@ -18,14 +18,16 @@
   --primary: rgb(255, 255, 255);
   --secondary: rgb(240, 240, 240);
   --text-color: rgb(0, 0, 0);
-  --text-fade: rgb(48, 48, 48);
+  --text-fade: rgb(100, 100, 100);
 
   background-color: var(--background-lige);
   color: var(--text-color);
 
   font-family: startFont;
   line-height: 1.5;
+  
 }
+
 
 html,
 body {
@@ -82,4 +84,10 @@ button:hover {
   background-color: var(--background-main);
   color: var(--primary);
   border: 2px solid var(--text-color);
+}
+
+@media (max-width: 767px) { 
+  main {
+    margin-top: 4.3rem;
+  }
 }

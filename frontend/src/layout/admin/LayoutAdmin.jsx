@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import NavAdmin from "./NavAdmin";
@@ -19,7 +19,7 @@ const LayoutAdmin = () => {
 
   return (
     <div id="Admin">
-      <NavAdmin user={user} />
+      <NavAdmin />
       <main id="Admin-content">
         <Outlet />
       </main>

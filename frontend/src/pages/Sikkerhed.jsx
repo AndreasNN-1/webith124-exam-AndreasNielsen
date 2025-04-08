@@ -5,7 +5,6 @@ const Sikkerhed = () => {
   return (
     <>
       <div id="Sikkerhed">
-        <SilderSmooth />
       </div>
     </>
   );

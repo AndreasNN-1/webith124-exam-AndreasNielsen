@@ -14,8 +14,12 @@ const Header = () => {
   };
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
-      setScrolling(true);
+    if (window.innerWidth > 767) {
+      if (window.scrollY > 100) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
     } else {
       setScrolling(false);
     }
@@ -28,7 +32,14 @@ const Header = () => {
 
   return (
     <header className={scrolling ? "scrolling" : ""}>
-      <div className="logo-container">
+      <div className="top-container">
+        <div className="burger-menu-container">
+          <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={toggleMobileMenu}>
+            <div className="bar" />
+            <div className="bar" />
+            <div className="bar" />
+          </div>
+        </div>
         <NavLink to="/" className="logo">
           <img src="/SiteAssets/icons/logo.png" alt="logo" />
         </NavLink>
@@ -93,13 +104,6 @@ const Header = () => {
               </NavLink>
             </li>
           }
-          <div className="burger-menu-container">
-            <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={toggleMobileMenu}>
-              <div className="bar" />
-              <div className="bar" />
-              <div className="bar" />
-            </div>
-          </div>
         </menu>
         <div className="socials">
           <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
