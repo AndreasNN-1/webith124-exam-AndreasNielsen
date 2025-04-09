@@ -1,0 +1,16 @@
+#Galleri {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 12%;
+
+    @media (max-width: 1300px) {
+        padding: 0 6%;
+    }
+
+    @media (max-width: 767px) {
+        padding: 0 1%;
+    }
+}

@@ -20,7 +20,7 @@ const Trips = () => {
         makeRequest(`${APIURL}tours`, "GET");
     }, []);
     return (
-        <div id="Trips">
+        <section id="Trips">
             {isLoading && <Loader />}
             {error && <Error />}
             {data && data.map((item, index) => (
@@ -39,7 +39,7 @@ const Trips = () => {
                     </div>
                 </div>
             ))}
-        </div>
+        </section>
     );
 };
 

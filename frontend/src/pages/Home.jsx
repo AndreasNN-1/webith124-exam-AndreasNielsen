@@ -7,13 +7,13 @@ import Team from "../components/Team";
 
 const Home = () => {
   return (
-    <section id="Home">
+    <article id="Home">
       <Banner silder={true} />
       <TurePreview />
       <Info title="Lidt om os" img="om-os.jpg" api="about" links={{ link: "kontakt", name: "Kontakt os" }} />
       <Team />
       <NewsLetter />
-    </section>
+    </article>
   );
 };
 

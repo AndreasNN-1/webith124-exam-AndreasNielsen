@@ -5,7 +5,7 @@ import "./Banner.scss";
 const Banner = ({ silder, custom }) => {
     const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     return (
-        <div id="banner">
+        <section id="banner">
             {silder &&
                 <SilderSmooth />
             }
@@ -17,7 +17,7 @@ const Banner = ({ silder, custom }) => {
                     </div>
                 </div>
             )}
-        </div>
+        </section>
     )
 }
 

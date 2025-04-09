@@ -4,6 +4,7 @@ import "./Info.scss";
 import Loader from "./Loader";
 import Error from "./Error";
 import { NavLink } from "react-router-dom";
+import DOMPurify from 'dompurify';
 
 const Info = ({ title, img, api, links }) => {
     const APIURL = import.meta.env.VITE_APP_API;
@@ -21,7 +22,7 @@ const Info = ({ title, img, api, links }) => {
 
 
     return (
-        <div id="Info">
+        <section id="Info">
             <div className="OmOs">
                 <div className="Info-img-con">
                     <img src={`${APPSTORAGE}${img}`} alt="om-os" />
@@ -36,12 +37,12 @@ const Info = ({ title, img, api, links }) => {
                                 <p>{dataOm.title}</p>
                             </div>
                         </div>
-                        <div className="text" dangerouslySetInnerHTML={{ __html: dataOm.content }} />
+                        <div className="text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dataOm.content) }} />
                         {links && <NavLink to={`/${links.link}`}>{links.name}</NavLink>}
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     );
 };
 

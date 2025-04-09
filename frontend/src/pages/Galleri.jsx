@@ -1,11 +1,14 @@
 import React from "react";
-import SilderSmooth from "../components/SilderSmooth";
+import Gallery from "../components/Gallery";
+import LocalGallery from "../components/LocalGallery";
+import "./Galleri.scss"
 
 const Galleri = () => {
   return (
-    <section id="Galleri">
-
-    </section>
+    <article id="Galleri">
+      <Gallery />
+      <LocalGallery />
+    </article>
   );
 };
 

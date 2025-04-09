@@ -1,11 +1,11 @@
 import React from "react";
-import SilderSmooth from "../components/SilderSmooth";
+import Safety from "../components/Safety";
 
 const Sikkerhed = () => {
   return (
-    <section id="Sikkerhed">
-      Sikkerhed
-    </section>
+    <article id="Sikkerhed">
+      <Safety />
+    </article>
   );
 };
 

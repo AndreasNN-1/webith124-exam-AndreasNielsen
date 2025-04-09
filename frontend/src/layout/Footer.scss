@@ -3,6 +3,26 @@ footer {
     background-color: var(--background-lige);
     height: auto;
 
+    #toTop {
+        position: fixed;
+        z-index: 2;
+        bottom: 2rem;
+        right: 2rem;
+        width: auto;
+        height: auto;
+        aspect-ratio: 1;
+        font-size: 2rem;
+        transform: translateY(10rem);
+
+        svg {
+            transform: rotate(180deg);
+        }
+
+        &.active{
+            transform: translateY(0);
+        }
+    }
+
     menu {
         display: flex;
         justify-content: space-between;

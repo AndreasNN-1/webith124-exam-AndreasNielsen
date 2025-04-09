@@ -18,7 +18,7 @@ const UdvalgtTur = () => {
   }, [location]);
 
   return (
-    <section id="UdvalgtTur">
+    <article id="UdvalgtTur">
       {isLoading && <Loader />}
       {error && <Error />}
       {data && (
@@ -79,7 +79,7 @@ const UdvalgtTur = () => {
           </div>
         </div>
       )}
-    </section>
+    </article>
   );
 };
 

@@ -5,7 +5,7 @@ const Confirmation = ({ ConfirmationData, ConfirmationOutput }) => {
   const confirmationRef = useRef(null);
 
   const handleBackgroundClick = (e) => {
-    if (confirmationRef.current && !confirmationRef.current.contains(e.target)) {
+    if (!confirmationRef.current?.contains(e.target)) {
       ConfirmationOutput("Canceled");
     }
   };

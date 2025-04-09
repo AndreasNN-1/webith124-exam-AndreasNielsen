@@ -27,7 +27,7 @@ const Team = () => {
     }
 
     return (
-        <div className="Team">
+        <section className="Team">
             <h3>Vores team</h3>
             <div className="members">
                 {data && data.map((team, index) => (
@@ -43,7 +43,7 @@ const Team = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 

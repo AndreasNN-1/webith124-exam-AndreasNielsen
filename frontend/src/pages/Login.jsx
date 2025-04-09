@@ -35,7 +35,7 @@ const Login = () => {
     };
 
     return (
-        <section id="Login">
+        <article id="Login">
             <form className="LoginForm" onSubmit={submitLogin}>
                 <h1 className="logintitle">Login</h1>
                 <div className="LoginBox">
@@ -72,7 +72,7 @@ const Login = () => {
                 {errorMessage && <p className="errorText">{errorMessage}</p>}
                 <button className="loginButton" type="submit">Login</button>
             </form>
-        </section>
+        </article>
     );
 };
 

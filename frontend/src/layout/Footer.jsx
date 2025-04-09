@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Footer.scss"
+import Loader from '../components/Loader';
+import Error from '../components/Error';
 import useRequstData from "../hooks/useRequstData";
 import { FaFacebookF, FaGooglePlusG, FaInstagram, FaRegCopyright, FaTwitter, FaDirections } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { IoMdMail } from "react-icons/io";
+import { IoMdMail, IoIosArrowDown } from "react-icons/io";
 import { LoginContext } from '../context/LoginContext';
 import { NavLink } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
@@ -11,16 +13,45 @@ import { GoDotFill } from "react-icons/go";
 const Footer = () => {
     const { user } = useContext(LoginContext);
     const { makeRequest, isLoading, data, error } = useRequstData();
+    const [show, setShow] = useState(false);
     const APIURL = import.meta.env.VITE_APP_API;
     useEffect(() => {
         makeRequest(`${APIURL}footer`, "GET");
     }, []);
 
+    const ToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
+    const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercentage = (scrollY / totalHeight) * 100;
+
+        if (scrollPercentage > 75) {
+            setShow(true);
+        } else {
+            setShow(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
     return (
         <footer>
+            <button onClick={() => ToTop()} id="toTop" className={show ? "active" : ""}>
+                <IoIosArrowDown />
+            </button>
             <menu>
                 <div className='kontact'>
                     <h5>KONTAKT</h5>
+                    {isLoading && <Loader />}
+                    {error && <Error />}
                     {data &&
                         <ul>
                             {data.phone ? (

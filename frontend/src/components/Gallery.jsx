@@ -25,19 +25,17 @@ const Gallery = () => {
         handleResize();
 
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     useEffect(() => {
         makeRequest(`${APIURL}Gallery`, "GET");
     }, []);
 
-
-
-
-
     return (
-        <div id="Gallery">
+        <section id="Gallery">
             <h3>Galleri</h3>
             <div className="Gallery-con">
                 {isMobile ? (
@@ -85,8 +83,8 @@ const Gallery = () => {
                     </>
                 )}
             </div>
-        </div>
+        </section>
     )
 }
 
-export default Gallery
+export default Gallery;

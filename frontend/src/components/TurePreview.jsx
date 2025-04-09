@@ -14,7 +14,7 @@ const TurePreview = () => {
         makeRequest(`${APIURL}tours`, "GET");
     }, []);
     return (
-        <div id="TurePreview">
+        <section id="TurePreview">
             <div className="Tures">
                 {isLoading && <Loader />}
                 {error && <Error />}
@@ -33,7 +33,7 @@ const TurePreview = () => {
                 }
             </div>
             <NavLink to="/ture" >Vores ture<FaLongArrowAltRight /></NavLink>
-        </div>
+        </section>
     );
 };
 

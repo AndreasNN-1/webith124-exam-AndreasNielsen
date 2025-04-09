@@ -7,7 +7,7 @@ import Error from "./Error";
 const NewsLetter = () => {
   const { RunNotification, RunConfirmation } = useContext(NotificationContext);
   const APIURL = import.meta.env.VITE_APP_API;
-  const joined = sessionStorage.getItem("NewsLetter");
+  const joined = localStorage.getItem("NewsLetter");
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const { makeRequest, isLoading, data, error } = useRequstData();
@@ -58,7 +58,7 @@ const NewsLetter = () => {
 
   useEffect(() => {
     if (data) {
-      sessionStorage.setItem("NewsLetter", true);
+      localStorage.setItem("NewsLetter", true);
       RunNotification(
         200,
         "Tilmeldt!",
@@ -70,7 +70,7 @@ const NewsLetter = () => {
 
   useEffect(() => {
     if (dataAfmeld) {
-      sessionStorage.removeItem("NewsLetter");
+      localStorage.removeItem("NewsLetter");
       RunNotification(
         200,
         "Afmeldt!",
@@ -81,7 +81,7 @@ const NewsLetter = () => {
   }, [dataAfmeld]);
 
   return (
-    <div id="NewsLetter">
+    <section id="NewsLetter">
       <img className="bg-img" src="/SiteAssets/images/newsmail-bg.jpg" alt="nyhedsbrev baggrundsbillede" />
       {joined ? (
         <div className="NewsLetter-container">
@@ -89,10 +89,23 @@ const NewsLetter = () => {
           <p>Tak for at have dig tilmeldt dig til vores nyhedsbrev, Du ville få 25% rabat på din første tur!</p>
           <p>Vil du afmelde nyhedsbrev?</p>
           <form onSubmit={Afmeld}>
-            <div className="inputs">
+            <label htmlFor="email" className="inputs">
               {showError && <span>udfyld korrekt e-mail</span>}
-              <input disabled={isLoadingAfmeld} value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Indsæt e-mailadresse" />
-            </div>
+              <input
+                disabled={isLoadingAfmeld}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                name="email"
+                id="email"
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                required
+                autoComplete="email"
+                placeholder="Indsæt e-mailadresse"
+                minLength={6}
+                maxLength={100}
+              />
+            </label>
             <button disabled={isLoadingAfmeld} type="submit">Afmeld</button>
             {errorAfmeld && <Error />}
           </form>
@@ -104,16 +117,29 @@ const NewsLetter = () => {
             <h4>Tilmeld dig og få 25% rabat</h4>
             <p>Tilmeld dig vores nyhedsbrev og få 25% rabat på din første tur!</p>
             <form onSubmit={Submit}>
-              <div className="inputs">
+              <label htmlFor="email" className="inputs">
                 {showError && <span>udfyld korrekt e-mail</span>}
-                <input disabled={isLoading} value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Din E-mail" />
-              </div>
+                <input
+                  disabled={isLoading}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  autoComplete="email"
+                  pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                  placeholder="Din E-mail"
+                  minLength={6}
+                  maxLength={100}
+                />
+              </label>
               <button disabled={isLoading} type="submit">Tilmeld</button>
             </form>
             {error && <Error />}
           </div >
         )}
-    </div >
+    </section >
   );
 };
 

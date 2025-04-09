@@ -109,7 +109,7 @@ const KontaktForm = () => {
     }, [error, data]);
 
     return (
-        <div id="KontaktForm">
+        <section id="KontaktForm">
             <div className="title">
                 <h4>Kontakt</h4>
                 <p>Skulle du side et spørgsmål eller to, så skriv til os og vi vil kontakte dig hurtigst muligt.</p>
@@ -127,13 +127,15 @@ const KontaktForm = () => {
                             required
                             type="text"
                             name="name"
+                            id="name"
+                            autoComplete="name"
                             pattern="[A-Za-z\s]+"
                             title="Indtast kun bogstaver (A–Z)"
                             placeholder="Dit navn"
                             value={fromData.name}
                             onChange={handleChange}
                             minLength={4}
-                            maxLength={25}
+                            maxLength={100}
                         />
                         {fromError.name && <span>Indtast dit navn</span>}
                     </label>
@@ -143,6 +145,8 @@ const KontaktForm = () => {
                             required
                             type="email"
                             name="email"
+                            id="email"
+                            autoComplete="email"
                             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                             title="Indsæt gyldig e-mail"
                             placeholder="E-mail"
@@ -159,6 +163,8 @@ const KontaktForm = () => {
                             required
                             type="tel"
                             name="tlf"
+                            id="tlf"
+                            autoComplete="tel"
                             pattern="[0-9]+"
                             title="Indsæt telefonnummer - kun tal"
                             placeholder="Tlf"
@@ -174,6 +180,7 @@ const KontaktForm = () => {
                             disabled={isLoading}
                             required
                             name="msg"
+                            id="msg"
                             placeholder="Besked"
                             title="Skriv en besked"
                             onChange={handleChange}
@@ -186,7 +193,7 @@ const KontaktForm = () => {
                     <button disabled={isLoading} type="submit">Send</button>
                 </form>
             )}
-        </div>
+        </section>
     );
 };
 

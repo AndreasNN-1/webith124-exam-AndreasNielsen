@@ -62,11 +62,13 @@ Jeg har organiseret min opgave vha. Trello, hvor jeg har planlagt opgaver, estim
 
 | Dag-1               | Tids Estimat | Rigtig Tid | info                                       |
 | ------------------- | ------------ | ---------- | ------------------------------------------ |
-| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
-| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
-| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
-| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
-| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
+| **Header**          | 1 1/2 : hr   | 2 : hrs| Jeg kom meget hurtigt i gang med den, men indså et godt stykke inde i processen, at jeg kunne have lavet det på en meget lettere måde. Jeg startede nemlig med at sætte det op i forskellige dele, men opdagede, at jeg kunne kombinere de fleste af dem og færdiggøre det i styling. |
+| **Footer**          | 1 : hr   | 45 : mins    | Det var lettere at lave footeren samt at få dataet og styling til at virke |
+| **Banner / silder** | 1 : hr   | 1 1/4 : hrs    | tog en smule længere end jeg havde regnet med da jeg skulle lave den dynamisk hvis det ikke er en slider |
+| **Ture Preview**    | 1 : hr   | 35 : mins    | to ingen tid da det kun var to billeder og et link |
+| **Lidt om os**      | 1 : hr   | 1 : hrs    | Jeg lagde mærke mærke til at der er et komponent som dette på mere end en side så jeg brugte en smule ekstra tid på at få den til at være dynamisk og virke på begge |
+| **Vores team**      | 1 : hr   | 35 : mins    | tog mig ikke så lang tid i forhold til at jeg bare skulle map app nogle objekter ud og så vise det i et                      |
+| **nyhedsbrev**      | 1 : hr   | 1 1/2 : hrs    | Kræver prækompilering                      |
 
 | Dag-2               | Tids Estimat | Rigtig Tid | info                                       |
 | ------------------- | ------------ | ---------- | ------------------------------------------ |
