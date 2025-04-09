@@ -78,6 +78,7 @@
         color: var(--secondary);
       }
     }
+
     .actions {
       display: flex;
       justify-content: center;
@@ -112,6 +113,12 @@
           fill: var(--primary);
         }
       }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .Confirmation {
+      max-width: 90%;
     }
   }
 }

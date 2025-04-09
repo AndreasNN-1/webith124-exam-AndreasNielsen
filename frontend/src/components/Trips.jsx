@@ -25,13 +25,13 @@ const Trips = () => {
             {error && <Error />}
             {data && data.map((item, index) => (
                 <div key={index} className="Trips-item">
+                    <div className="price">
+                        {item.price}
+                    </div>
                     <figure className="image">
                         <img src={`${APPSTORAGE}${item.image1}`} alt={item.destination} />
                     </figure>
                     <div className="info">
-                        <div className="price">
-                            {item.price}
-                        </div>
                         <p className="title">{item.title}</p>
                         <div className="content" dangerouslySetInnerHTML={{ __html: item.content }} />
                         <CountdownTimer launchDate={item.spacelaunch} />

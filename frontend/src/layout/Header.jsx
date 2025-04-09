@@ -8,7 +8,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const Header = () => {
   const { user } = useContext(LoginContext);
-  const [isMobileMenuActive, setMobileMenuActive] = useState(false);
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const { makeRequest, isLoading, data, error } = useRequstData();
@@ -17,8 +17,8 @@ const Header = () => {
     makeRequest(`${APIURL}tours`, "GET");
   }, []);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuActive((prevState) => !prevState);
+  const CloseMobileMenu = () => {
+    setIsMobileMenuActive(false);
     setDropdown(false);
   };
 
@@ -43,7 +43,7 @@ const Header = () => {
     <header className={scrolling ? "scrolling" : ""}>
       <div className="top-container">
         <div className="burger-menu-container">
-          <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={toggleMobileMenu}>
+          <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={() => setIsMobileMenuActive(!isMobileMenuActive)}>
             <div className="bar" />
             <div className="bar" />
             <div className="bar" />
@@ -53,11 +53,12 @@ const Header = () => {
           <img src="/SiteAssets/icons/logo.png" alt="logo" />
         </NavLink>
       </div>
-      <nav>
+      <nav className={isMobileMenuActive ? 'active' : ''}>
         <menu>
           <li>
             <NavLink
               to="/"
+              onClick={() => CloseMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
               <div className="bar" />
               <span>Hjem</span>
@@ -66,26 +67,33 @@ const Header = () => {
           <li>
             <NavLink
               to="/rumfærgen"
+              onClick={() => CloseMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
               <div className="bar" />
               <span>Rumfærgen</span>
             </NavLink>
           </li>
           <li className="extra">
-            <NavLink
-              to="/ture"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <div className="bar" />
-              <span>Ture</span>
-            </NavLink>
+            <div>
+              <NavLink
+                to="/ture"
+                onClick={() => CloseMobileMenu()}
+                className={({ isActive }) => (isActive ? "active" : "")}>
+                <div className="bar" />
+                <span>Ture</span>
+              </NavLink>
 
-            <ul className="extra-links">
+              <button className={`dropdown ${dropdown ? "active" : ""}`} onClick={() => setDropdown(!dropdown)}>
+                <IoIosArrowDown />
+              </button>
+            </div>
+            <ul className={`extra-links ${dropdown ? "active" : ""}`}>
               {data && data.length > 0 ? (
                 data.map((item, index) => (
                   <li key={index}>
                     <NavLink
                       to={`/ture/${item._id}`}
+                      onClick={() => CloseMobileMenu()}
                       className={({ isActive }) => (isActive ? "active" : "")}>
                       {item.destination}
                     </NavLink>
@@ -99,6 +107,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/galleri"
+              onClick={() => CloseMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
               <div className="bar" />
               <span>Galleri</span>
@@ -107,6 +116,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/sikkerhed"
+              onClick={() => CloseMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
               <div className="bar" />
               <span>Sikkerhed</span>
@@ -115,6 +125,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/kontakt"
+              onClick={() => CloseMobileMenu()}
               className={({ isActive }) => (isActive ? "active" : "")}>
               <div className="bar" />
               <span>Kontakt</span>
@@ -124,6 +135,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/admin/dashboard"
+                onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <div className="bar" />
                 <span>Dashboard</span>
@@ -146,7 +158,7 @@ const Header = () => {
           </a>
         </div>
       </nav>
-      <div className={`mobile-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Mobilmenu">
+      {/* <div className={`mobile-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Mobilmenu">
         <menu>
           <div className="socials">
             <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
@@ -166,7 +178,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/"
-                onClick={() => toggleMobileMenu()}
+                onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <span>Hjem</span>
               </NavLink>
@@ -174,7 +186,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/rumfærgen"
-                onClick={() => toggleMobileMenu()}
+                onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <span>Rumfærgen</span>
               </NavLink>
@@ -183,7 +195,7 @@ const Header = () => {
               <div>
                 <NavLink
                   to="/ture"
-                  onClick={() => toggleMobileMenu()}
+                  onClick={() => CloseMobileMenu()}
                   className={({ isActive }) => (isActive ? "active" : "")}>
                   <span>Ture</span>
                 </NavLink>
@@ -198,7 +210,7 @@ const Header = () => {
                     <li key={index}>
                       <NavLink
                         to={`/ture/${item._id}`}
-                        onClick={() => toggleMobileMenu()}
+                        onClick={() => CloseMobileMenu()}
                         className={({ isActive }) => (isActive ? "active" : "")}>
                         {item.destination}
                       </NavLink>
@@ -212,7 +224,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/galleri"
-                onClick={() => toggleMobileMenu()}
+                onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <span>Galleri</span>
               </NavLink>
@@ -220,7 +232,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/sikkerhed"
-                onClick={() => toggleMobileMenu()}
+                onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <span>Sikkerhed</span>
               </NavLink>
@@ -228,7 +240,7 @@ const Header = () => {
             <li>
               <NavLink
                 to="/kontakt"
-                onClick={() => toggleMobileMenu()}
+                onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <span>Kontakt</span>
               </NavLink>
@@ -237,7 +249,7 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/admin/dashboard"
-                  onClick={() => toggleMobileMenu()}
+                  onClick={() => CloseMobileMenu()}
                   className={({ isActive }) => (isActive ? "active" : "")}>
                   <span>Dashboard</span>
                 </NavLink>
@@ -245,7 +257,7 @@ const Header = () => {
             }
           </ul>
         </menu>
-      </div>
+      </div> */}
     </header>
   );
 };

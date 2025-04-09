@@ -40,4 +40,14 @@
             }
         }
     }
+
+    @media (max-width: 767px) {
+        .custom {
+            .title {
+                h2 {
+                    font-size: 2.6rem;
+                }
+            }
+        }
+    }
 }

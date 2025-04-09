@@ -109,8 +109,8 @@ const NewsLetter = () => {
                 <input disabled={isLoading} value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="Din E-mail" />
               </div>
               <button disabled={isLoading} type="submit">Tilmeld</button>
-              {error && <Error />}
             </form>
+            {error && <Error />}
           </div >
         )}
     </div >

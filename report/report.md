@@ -1,6 +1,6 @@
 # Webith124 Exam Dokumentation
 
-## Forside
+## START
 
 **Opgavens navn:** SPACE VENTURE  
 **Navn:** Andreas Nielsen  
@@ -35,17 +35,6 @@ Jeg har primært fokuseret på at skabe en brugervenlig og effektiv løsning med
 
 ---
 
-## Overvejelser og Valg
-
-Under udviklingen af projektet har jeg truffet en række valg for at optimere performance og skalerbarhed:
-
-- **State Management:** Jeg har valgt at benytte Reacts indbyggede state management i stedet for Redux for at holde projektet simpelt og hurtigt.
-- **Autentifikation:** Login-systemet er baseret på en simpel token-baseret autentifikation for at sikre brugervenlighed og sikkerhed.
-- **Responsivt Design:** Projektet er optimeret til både desktop og mobil vha. fleksible grid-layouts og media queries.
-- **API-forbedringer:** Jeg har optimeret API-kald ved at implementere caching, hvilket reducerer unødvendige anmodninger.
-
----
-
 ## Test Oplysninger
 
 - **API URL:** [127.0.0.1:5020](ttp://127.0.0.1:5020)
@@ -65,7 +54,59 @@ Under udviklingen af projektet har jeg truffet en række valg for at optimere pe
 
 Jeg har organiseret min opgave vha. Trello, hvor jeg har planlagt opgaver, estimeret tid, og tracket mine fremskridt.
 
-- **Trello Board Link:** [Trello](https://trello.com/invite/b/67e12ca3a50b2cc085bf3cd4/ATTI432c7b37cccf9538f3fdbc659e7567a8DC2390A2/webith124-andreasnielsen)
+**Trello Board Link:** 
+- [Trello link](https://trello.com/invite/b/67e12ca3a50b2cc085bf3cd4/ATTI432c7b37cccf9538f3fdbc659e7567a8DC2390A2/webith124-andreasnielsen)
+
+**Tidsplan, Estimat**
+- "6 dag / 8 timer per dag"
+
+| Dag-1               | Tids Estimat | Rigtig Tid | info                                       |
+| ------------------- | ------------ | ---------- | ------------------------------------------ |
+| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
+| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
+| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
+| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
+| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
+
+| Dag-2               | Tids Estimat | Rigtig Tid | info                                       |
+| ------------------- | ------------ | ---------- | ------------------------------------------ |
+| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
+| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
+| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
+| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
+| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
+
+| Dag-3               | Tids Estimat | Rigtig Tid | info                                       |
+| ------------------- | ------------ | ---------- | ------------------------------------------ |
+| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
+| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
+| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
+| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
+| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
+
+| Dag-4               | Tids Estimat | Rigtig Tid | info                                       |
+| ------------------- | ------------ | ---------- | ------------------------------------------ |
+| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
+| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
+| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
+| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
+| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
+
+| Dag-5               | Tids Estimat | Rigtig Tid | info                                       |
+| ------------------- | ------------ | ---------- | ------------------------------------------ |
+| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
+| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
+| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
+| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
+| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
+
+| Dag-6               | Tids Estimat | Rigtig Tid | info                                       |
+| ------------------- | ------------ | ---------- | ------------------------------------------ |
+| **Header**          | 1 1/2 : hr   | 2 : hrs    | Kan være tungt for simple                  |
+| **Footer**          | 1 1/2 : hr   | 2 : hrs    | Ikke altid kompatibel med ældre npm-pakker |
+| **Banner / silder** | 1 1/2 : hr   | 2 : hrs    | Kan erstattes af fetch API                 |
+| **Sass**            | 1 1/2 : hr   | 2 : hrs    | Kræver prækompilering                      |
+| **dags Tid:**       | 8 : hr       | 9 : hrs    | Kræver prækompilering                      |
 
 ---
 
@@ -76,15 +117,3 @@ I forbindelse med eksamensopgaven har jeg valgt at inkludere følgende tilvalgso
 - Implementering af dark mode
 - Dynamisk routing med React Router
 - Integration af tredjeparts API
-
----
-
-## Bilag
-
-- **Tidsplan**: [Link til tidsplan eller billede af Trello-board]
-- **Kodeeksempler**: [Uddrag af vigtige kodeelementer]
-- **Screenshots**: [Screenshots af applikationen og udviklingsprocessen]
-
----
-
-Dette dokument er en sammenfatning af mit arbejde og de beslutninger, der blev taget undervejs i udviklingsprocessen.
