@@ -1,15 +1,16 @@
-import { useEffect } from "react";
-import useRequstData from "../hooks/useRequstData";
-import "./Trips.scss";
-import CountdownTimer from "./CountdownTimer";
-import Loader from "./Loader";
-import Error from "./Error";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import "./TureAdmin.scss";
+import Banner from "../../components/Banner";
+import useRequstData from "../../hooks/useRequstData";
+import Loader from "../../components/Loader";
+import Error from "../../components/Error";
 import DOMPurify from 'dompurify';
+import CountdownTimer from "../../components/CountdownTimer";
+import { NavLink } from "react-router-dom";
 
-const Trips = () => {
+const TureAdmin = () => {
     const APIURL = import.meta.env.VITE_APP_API;
-    const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
+    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const {
         makeRequest: makeRequest,
         isLoading: isLoading,
@@ -21,7 +22,8 @@ const Trips = () => {
         makeRequest(`${APIURL}tours`, "GET");
     }, []);
     return (
-        <section id="Trips">
+        <section id="TureAdmin">
+            <Banner custom={{ img: "TureAdminBanner.jpg", text: "Alle ture" }} />
             {isLoading && <Loader />}
             {error && <Error />}
             {data && data.map((item, index) => (
@@ -30,13 +32,13 @@ const Trips = () => {
                         {item.price}
                     </div>
                     <figure className="image">
-                        <img src={`${APISTORAGE}tours/${item.image1}`} alt={item.destination} />
+                        <img src={`${APPSTORAGE}${item.image1}`} alt={item.destination} />
                     </figure>
                     <div className="info">
                         <p className="title">{item.title}</p>
                         <div className="content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.content) }} />
                         <CountdownTimer launchDate={item.spacelaunch} />
-                        <NavLink to={`/ture/${item._id}`}>Se mere</NavLink>
+                        <NavLink to={`/admin/ture/${item._id}`}>Redigere</NavLink>
                     </div>
                 </div>
             ))}
@@ -44,4 +46,4 @@ const Trips = () => {
     );
 };
 
-export default Trips;
+export default TureAdmin;

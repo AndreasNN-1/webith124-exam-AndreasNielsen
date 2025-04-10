@@ -2,7 +2,7 @@ import React from "react";
 import TurePreview from "../components/TurePreview";
 import Info from "../components/Info";
 import NewsLetter from "../components/NewsLetter";
-import Banner from "../components/banner";
+import Banner from "../components/Banner";
 import Team from "../components/Team";
 
 const Home = () => {

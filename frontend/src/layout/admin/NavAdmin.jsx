@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import { NotificationContext } from "../../context/NotificationContext";
 import { BiSolidDashboard } from "react-icons/bi";
-import { FaHome, FaInfoCircle } from "react-icons/fa";
-import { MdAccountBox, MdSettings, MdLogout } from "react-icons/md";
+import { FaHome, FaRocket, FaShip } from "react-icons/fa";
+import { MdAccountBox, MdLogout } from "react-icons/md";
 import { LuPanelLeftClose } from "react-icons/lu";
 
 import "./NavAdmin.scss";
@@ -77,11 +77,20 @@ const NavAdmin = () => {
         </li>
         <li>
           <NavLink
-            to="/admin/info"
+            to="/admin/ture"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <FaInfoCircle />
-            <span>Info</span>
+            <FaRocket />
+            <span>Ture</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/admin/rumfærgen"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <FaShip />
+            <span>Rumfærgen</span>
           </NavLink>
         </li>
         <li>
@@ -91,15 +100,6 @@ const NavAdmin = () => {
           >
             <MdAccountBox />
             <span>Account</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/settings"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <MdSettings />
-            <span>Settings</span>
           </NavLink>
         </li>
         <li>

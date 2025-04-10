@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import NavAdmin from "./NavAdmin";

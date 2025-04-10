@@ -159,6 +159,9 @@
     overflow-y: auto;
     padding: 0.6rem;
     transition: padding ease 300ms;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 
     li {
       list-style: none;
@@ -183,6 +186,7 @@
         &.active {
           color: var(--primary);
           border-left: 2px solid var(--highlight);
+          background-color: var(--background-main);
         }
       }
 

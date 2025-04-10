@@ -1,0 +1,315 @@
+#EditTureAdmin {
+    width: 100%;
+    max-width: 1800px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+
+    a {
+        width: auto;
+        height: auto;
+        font-size: 1.4rem;
+        text-decoration: none;
+        background-color: var(--secondary);
+        color: var(--text-color);
+        border: 2px solid var(--text-color);
+        padding: 1rem 3rem;
+        transition: all ease 400ms;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: border-color 500ms ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            width: 0%;
+            height: 100%;
+            background-color: var(--highlight);
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 33%, rgba(0, 0, 0, 1) 66%, rgba(0, 0, 0, 0) 100%);
+            transition: width 300ms ease, opacity 300ms ease;
+        }
+
+        &:hover {
+            background-color: var(--primary);
+            color: var(--text-color);
+            border-color: var(--highlight);
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 1;
+                width: 250%;
+                height: 100%;
+                background-color: var(--highlight);
+            }
+        }
+    }
+
+    .Trip-form {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        position: relative;
+        width: auto;
+        height: 100%;
+        background-color: var(--primary);
+        box-shadow: 0 0 1rem var(--text-fade);
+        border-radius: 1rem;
+        padding: 2rem;
+        gap: 2rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .editer {
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            flex-direction: row;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: auto;
+            gap: 3rem;
+
+            .images {
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-direction: column;
+                width: 40%;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                gap: 2rem;
+
+                .image {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    overflow: hidden;
+                    margin: 0;
+                    padding: 0;
+                    gap: 0;
+
+                    img {
+                        transition: transform 400ms ease;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    input {
+                        width: 100%;
+                        background-color: transparent;
+                        border-bottom: 2px dotted var(--highlight);
+                        border-right: 2px dotted var(--highlight);
+                        border-left: 2px dotted var(--highlight);
+                        background-color: var(--secondary);
+                        border-bottom-left-radius: 1rem;
+                        border-bottom-right-radius: 1rem;
+                        padding: 1rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        cursor: pointer;
+                        color: var(--text-color);
+                        transition: border-color 300ms ease, background-color 300ms ease, color 300ms ease;
+
+                        &:hover {
+                            color: var(--primary);
+                            background-color: var(--highlight);
+                            border-bottom: 2px dotted var(--text-color);
+                            border-right: 2px dotted var(--text-color);
+                            border-left: 2px dotted var(--text-color);
+                        }
+                    }
+                }
+            }
+
+            .info {
+                width: 60%;
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: start;
+                flex-direction: column;
+                gap: 1rem;
+
+                label {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: start;
+                    flex-direction: column;
+                    gap: 0.1rem;
+
+                    span {
+                        font-size: 1.4rem;
+                        line-height: 1.4rem;
+                    }
+
+                    input {
+                        width: 100%;
+                        font-size: 1.2rem;
+                        padding: 1rem;
+                        background-color: var(--secondary);
+                        border: none;
+                        color: var(--text-color);
+                    }
+                }
+            }
+        }
+
+        .options {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            gap: 1rem;
+
+            button {
+                padding: 0.75rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .slet {
+                background-color: red;
+
+                &:hover {
+                    background-color: rgb(107, 0, 0);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .Trip-form {
+            width: 100%;
+
+            .editer {
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                flex-direction: column-reverse;
+                width: 100%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                width: auto;
+                gap: 3rem;
+
+                .images {
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                    flex-direction: column;
+                    width: 100%;
+                    overflow: hidden;
+                    margin: 0;
+                    padding: 0;
+                    gap: 2rem;
+
+                    .image {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        overflow: hidden;
+                        margin: 0;
+                        padding: 0;
+                        gap: 0;
+
+                        img {
+                            transition: transform 400ms ease;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        input {
+                            width: 100%;
+                            background-color: transparent;
+                            border-bottom: 2px dotted var(--highlight);
+                            border-right: 2px dotted var(--highlight);
+                            border-left: 2px dotted var(--highlight);
+                            background-color: var(--secondary);
+                            border-bottom-left-radius: 1rem;
+                            border-bottom-right-radius: 1rem;
+                            padding: 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            cursor: pointer;
+                            color: var(--text-color);
+                            transition: border-color 300ms ease, background-color 300ms ease, color 300ms ease;
+
+                            &:hover {
+                                color: var(--primary);
+                                background-color: var(--highlight);
+                                border-bottom: 2px dotted var(--text-color);
+                                border-right: 2px dotted var(--text-color);
+                                border-left: 2px dotted var(--text-color);
+                            }
+                        }
+                    }
+                }
+
+                .info {
+                    width: 100%;
+                    position: relative;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: start;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    label {
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: start;
+                        flex-direction: column;
+                        gap: 0.1rem;
+
+                        .quill {
+                            margin-bottom: 3rem;
+                        }
+
+                        span {
+                            font-size: 1.4rem;
+                            line-height: 1.4rem;
+                        }
+
+                        input {
+                            width: 100%;
+                            font-size: 1.2rem;
+                            padding: 1rem;
+                            background-color: var(--secondary);
+                            border: none;
+                            color: var(--text-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

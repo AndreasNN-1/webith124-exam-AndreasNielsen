@@ -11,6 +11,8 @@ import Galleri from "./pages/Galleri";
 import Sikkerhed from "./pages/Sikkerhed";
 import Kontakt from "./pages/Kontakt";
 import UdvalgtTur from "./pages/UdvalgtTur";
+import TureAdmin from "./pages/admin/TureAdmin";
+import EditTureAdmin from "./pages/admin/EditTureAdmin";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,9 +35,10 @@ function App() {
       errorElement: <PageNotFound />,
       children: [
         { path: "/admin/dashboard", element: <HomeAdmin /> },
-        { path: "/admin/info", element: <HomeAdmin /> },
+        { path: "/admin/ture", element: <TureAdmin /> },
+        { path: "/admin/ture/:id", element: <EditTureAdmin /> },
+        { path: "/admin/rumfærgen", element: <HomeAdmin /> },
         { path: "/admin/account", element: <HomeAdmin /> },
-        { path: "/admin/settings", element: <HomeAdmin /> },
       ],
     },
   ]);

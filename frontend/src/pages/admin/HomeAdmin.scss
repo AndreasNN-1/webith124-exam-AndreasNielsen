@@ -1,10 +1,12 @@
 .container {
   height: auto;
   width: 100%;
+  max-width: 1800px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
+
   .item {
     width: 250px;
     height: auto;
@@ -56,6 +58,7 @@
       position: relative;
       gap: 0.5rem;
       padding: 1rem;
+
       input {
         width: 100%;
         height: auto;
@@ -67,6 +70,7 @@
         background-color: #222;
         padding: 0.3rem;
       }
+
       textarea {
         width: 100%;
         height: auto;
@@ -79,6 +83,7 @@
         background-color: #222;
         padding: 0.3rem;
       }
+
       img {
         width: 100%;
         height: auto;
@@ -86,6 +91,7 @@
         object-fit: cover;
         object-position: center center;
       }
+
       input[type="file"] {
         width: 100%;
         display: flex;
@@ -93,6 +99,7 @@
         align-items: center;
         flex-direction: column;
       }
+
       .buttons {
         width: 100%;
         display: flex;
