@@ -1,6 +1,6 @@
 @font-face {
   font-family: "startFont";
-  src: url("/SiteAssets/fonts/materialdesignicons-webfont.woff") format("woff");
+  src: url("/SiteAssets/fonts/fl-bigmug-line.woff") format("woff");
 }
 
 
@@ -54,7 +54,7 @@ body {
 }
 
 main {
-  margin-top: calc(4.3rem + 4.5rem);
+  margin-top: calc(3.5rem + 4rem);
   width: 100%;
   flex: 1;
   display: flex;
@@ -62,6 +62,7 @@ main {
 }
 p,h1,h2,h3,h4,h5,h6{
   color: var(--text-color);
+  font-family: startFont;
 }
 
 main article {

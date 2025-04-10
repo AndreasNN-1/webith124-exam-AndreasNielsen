@@ -13,6 +13,7 @@ import Kontakt from "./pages/Kontakt";
 import UdvalgtTur from "./pages/UdvalgtTur";
 import TureAdmin from "./pages/admin/TureAdmin";
 import EditTureAdmin from "./pages/admin/EditTureAdmin";
+import UploadTureAdmin from "./pages/admin/UploadTureAdmin";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,6 +38,7 @@ function App() {
         { path: "/admin/dashboard", element: <HomeAdmin /> },
         { path: "/admin/ture", element: <TureAdmin /> },
         { path: "/admin/ture/:id", element: <EditTureAdmin /> },
+        { path: "/admin/ture/upload", element: <UploadTureAdmin /> },
         { path: "/admin/rumfærgen", element: <HomeAdmin /> },
         { path: "/admin/account", element: <HomeAdmin /> },
       ],

@@ -1,22 +1,21 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import "./EditTureAdmin.scss";
+import "./UploadTureAdmin.scss";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 import useRequstData from "../../hooks/useRequstData";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
+import { NavLink, useNavigate } from "react-router-dom";
 import { NotificationContext } from "../../context/NotificationContext";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import "./quill.scss";
 
-const EditTureAdmin = () => {
+const UploadTureAdmin = () => {
   const APIURL = import.meta.env.VITE_APP_API;
-  const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
+  const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
 
-  const refQuillContainer = useRef();
-  const refQuill = useRef();
-  const quillOptions = {
+  const refQuillContainerTwo = useRef();
+  const refQuilltWO = useRef();
+  const quillOptionss = {
     theme: "snow",
     modules: {
       toolbar: [
@@ -34,56 +33,47 @@ const EditTureAdmin = () => {
 
   const navigate = useNavigate();
 
-  const { RunNotification, RunConfirmation } = useContext(NotificationContext);
-  const { id } = useParams();
-  const [editData, setEditData] = useState({});
+  const { RunNotification } = useContext(NotificationContext);
+  const [editData, setEditData] = useState({
+    title: "",
+    image1: null,
+    image2: null,
+    traveltime: "",
+    distance: "",
+    destination: "",
+    price: "",
+    spacelaunch: "",
+  });
   const { makeRequest, isLoading, data, error } = useRequstData();
-  const {
-    makeRequest: makeRequestPUT,
-    isLoading: isLoadingPUT,
-    data: dataPUT,
-    error: errorPUT,
-  } = useRequstData();
-  const {
-    makeRequest: makeRequestDELETE,
-    isLoading: isLoadingDELETE,
-    data: dataDELETE,
-    error: errorDELETE,
-  } = useRequstData();
 
   useEffect(() => {
-    makeRequest(`${APIURL}tours/${id}`, "GET");
-  }, [id]);
-
-  useEffect(() => {
-    if (data) {
-      setEditData((prevData) => ({
-        ...prevData,
-        ...data,
-        spacelaunch: data.spacelaunch.split("T")[0],
-      }));
+    if (!refQuilltWO.current) {
+      refQuilltWO.current = new Quill(
+        refQuillContainerTwo.current,
+        quillOptionss
+      );
     }
-    if (!refQuill.current && data) {
-        refQuill.current = new Quill(refQuillContainer.current, quillOptions);
-      }
-  }, [data]);
+  }, []);
 
   const handleChange = (name, value) => {
     setEditData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // update
+  // upload start
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
       editData.title?.trim() == "" ||
-      refQuill.current == "" ||
+      refQuilltWO.current == "" ||
       editData.traveltime?.trim() == "" ||
       editData.distance?.trim() == "" ||
+      editData.destination?.trim() == "" ||
       editData.price?.trim() == "" ||
-      editData.spacelaunch?.trim() == ""
+      editData.spacelaunch?.trim() == "" ||
+      editData.image1 == null ||
+      editData.image2 == null
     ) {
       RunNotification(
         400,
@@ -95,9 +85,15 @@ const EditTureAdmin = () => {
     let formData = new FormData();
 
     if (editData.title) formData.append("title", editData.title);
-    if (refQuill.current) formData.append("content", refQuill.current.getSemanticHTML().replace(/&nbsp;/g, " "));
+    if (refQuilltWO.current)
+      formData.append(
+        "content",
+        refQuilltWO.current.getSemanticHTML().replace(/&nbsp;/g, " ")
+      );
     if (editData.traveltime) formData.append("traveltime", editData.traveltime);
     if (editData.distance) formData.append("distance", editData.distance);
+    if (editData.destination)
+      formData.append("destination", editData.destination);
     if (editData.price) formData.append("price", editData.price);
     if (editData.spacelaunch)
       formData.append("spacelaunch", editData.spacelaunch);
@@ -106,60 +102,28 @@ const EditTureAdmin = () => {
     if (editData.image2 instanceof File)
       formData.append("image2", editData.image2);
 
-    makeRequestPUT(`${APIURL}tours/admin/${id}`, "PUT", formData);
+    makeRequest(`${APIURL}tours/admin`, "POST", formData);
   };
 
   useEffect(() => {
-    if (dataPUT) {
+    if (data) {
       RunNotification(200, "opdateret!", "Ture er du opdateret");
       setEditData({});
       navigate("/admin/ture");
     }
-    if (errorPUT) {
+    if (error) {
       RunNotification(
         400,
         "opdatering fejlet",
         "Der opstod en fejl under opdateringen af denne ture"
       );
     }
-  }, [dataPUT, errorPUT]);
+  }, [data, error]);
 
-  // update end
-
-  // delte
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
-    const okToDelete = await RunConfirmation(
-      "Slet ture?",
-      "Er du sikker på du vil slette denne ture?"
-    );
-
-    if (okToDelete) {
-      makeRequestDELETE(`${APIURL}tours/admin/${id}`, "DELETE");
-    }
-  };
-
-  useEffect(() => {
-    if (dataDELETE) {
-      RunNotification(200, "opdateret!", "Turen er nu slettet");
-      setEditData({});
-      navigate("/admin/ture");
-    }
-    if (errorDELETE) {
-      RunNotification(
-        400,
-        "opstået fejlet",
-        "Der opstod en fejl under sletningen at denne ture"
-      );
-    }
-  }, [dataDELETE, errorDELETE]);
-
-  // delete end
+  // upload end
 
   return (
-    <section id="EditTureAdmin">
+    <section id="UploadTureAdmin">
       <NavLink to="/admin/ture">Gå tilbage</NavLink>
       {isLoading && <Loader />}
       {error && <Error />}
@@ -172,14 +136,14 @@ const EditTureAdmin = () => {
                   src={
                     editData.image1 instanceof File
                       ? URL.createObjectURL(editData.image1)
-                      : `${APISTORAGE}tours/${editData.image1}`
+                      : `${APPSTORAGE}PlaceholderImage.jpg`
                   }
                   alt="Image 1 Preview"
                 />
                 <input
                   type="file"
                   accept="image/*"
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
                   onChange={(e) => handleChange("image1", e.target.files[0])}
                 />
               </figure>
@@ -189,14 +153,14 @@ const EditTureAdmin = () => {
                   src={
                     editData.image2 instanceof File
                       ? URL.createObjectURL(editData.image2)
-                      : `${APISTORAGE}tours/${editData.image2}`
+                      : `${APPSTORAGE}PlaceholderImage.jpg`
                   }
                   alt="Image 2 Preview"
                 />
                 <input
                   type="file"
                   accept="image/*"
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
                   onChange={(e) => handleChange("image2", e.target.files[0])}
                 />
               </figure>
@@ -206,8 +170,9 @@ const EditTureAdmin = () => {
               <label htmlFor="Title">
                 <span>Title: </span>
                 <input
+                  placeholder="Title"
                   value={editData.title}
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
                   id="Title"
                   type="text"
                   className="text"
@@ -217,18 +182,15 @@ const EditTureAdmin = () => {
 
               <label htmlFor="content">
                 <span>Text: </span>
-                <div ref={refQuillContainer}
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(data?.content),
-                  }}
-                ></div>
+                <div ref={refQuillContainerTwo}></div>
               </label>
 
               <label htmlFor="Pris" className="price">
                 <span>Pris: </span>
                 <input
+                  placeholder="pris"
                   value={editData.price}
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
                   id="Pris"
                   type="text"
                   onChange={(e) => handleChange("price", e.target.value)}
@@ -239,7 +201,7 @@ const EditTureAdmin = () => {
                 <span>Dato: </span>
                 <input
                   value={editData.spacelaunch}
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
                   id="Dato"
                   type="date"
                   onChange={(e) => handleChange("spacelaunch", e.target.value)}
@@ -250,7 +212,8 @@ const EditTureAdmin = () => {
                 <span>traveltime: </span>
                 <input
                   value={editData.traveltime}
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
+                  placeholder="traveltime"
                   id="traveltime"
                   type="text"
                   className="text"
@@ -262,7 +225,8 @@ const EditTureAdmin = () => {
                 <span>destination: </span>
                 <input
                   value={editData.destination}
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
+                  placeholder="destination"
                   id="destination"
                   type="text"
                   className="text"
@@ -274,7 +238,8 @@ const EditTureAdmin = () => {
                 <span>distance: </span>
                 <input
                   value={editData.distance}
-                  disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                  disabled={isLoading}
+                  placeholder="distance"
                   id="distance"
                   type="text"
                   className="text"
@@ -286,18 +251,10 @@ const EditTureAdmin = () => {
           <div className="options">
             <button
               type="submit"
-              disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+              disabled={isLoading}
               onClick={(e) => handleSubmit(e)}
             >
-              Gem ændringer
-            </button>
-            <button
-              type="reset"
-              className="slet"
-              disabled={isLoading || isLoadingDELETE || isLoadingPUT}
-              onClick={(e) => handleDelete(e)}
-            >
-              Slet ture
+              Upload Ture
             </button>
           </div>
         </form>
@@ -306,4 +263,4 @@ const EditTureAdmin = () => {
   );
 };
 
-export default EditTureAdmin;
+export default UploadTureAdmin;

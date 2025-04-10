@@ -1,0 +1,28 @@
+.ql-toolbar {
+   width: 100% !important;
+}
+.ql-toolbar .ql-stroke {
+    stroke: var(--text-color) !important;
+}
+ 
+.ql-toolbar .ql-fill {
+    fill: var(--text-color) !important;
+}
+ 
+.ql-toolbar .ql-picker-label {
+    color: var(--text-color) !important;
+}
+ 
+.ql-toolbar .ql-picker-item {
+    color: var(--text-color) !important;
+}
+
+.ql-container {
+    width: 100%;
+}
+.ql-editor {
+    width: 100%;
+    min-height: 10rem;
+    padding: 1rem;
+    font-size: 1rem;
+}

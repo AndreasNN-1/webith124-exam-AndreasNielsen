@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 
 const TureAdmin = () => {
     const APIURL = import.meta.env.VITE_APP_API;
-    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
+    const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
     const {
         makeRequest: makeRequest,
         isLoading: isLoading,
@@ -24,6 +24,7 @@ const TureAdmin = () => {
     return (
         <section id="TureAdmin">
             <Banner custom={{ img: "TureAdminBanner.jpg", text: "Alle ture" }} />
+            <NavLink to="/admin/ture/upload" className="btn">Upload ny ture</NavLink>
             {isLoading && <Loader />}
             {error && <Error />}
             {data && data.map((item, index) => (
@@ -32,7 +33,7 @@ const TureAdmin = () => {
                         {item.price}
                     </div>
                     <figure className="image">
-                        <img src={`${APPSTORAGE}${item.image1}`} alt={item.destination} />
+                        <img src={`${APISTORAGE}tours/${item.image1}`} alt={item.destination} />
                     </figure>
                     <div className="info">
                         <p className="title">{item.title}</p>

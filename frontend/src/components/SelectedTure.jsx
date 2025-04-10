@@ -11,7 +11,7 @@ import DOMPurify from 'dompurify';
 const SelectedTure = () => {
   const { id } = useParams();
   const APIURL = import.meta.env.VITE_APP_API;
-  const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
+  const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
 
   const { makeRequest, isLoading, data, error } = useRequstData();
   const location = useLocation();
@@ -32,8 +32,8 @@ const SelectedTure = () => {
       {data && (
         <div className="ship">
           <div className="trip-images">
-            <img src={`${APPSTORAGE}${data.image1}`} alt="" />
-            <img src={`${APPSTORAGE}${data.image2}`} alt="" />
+            <img src={`${APISTORAGE}tours/${data.image1}`} alt="" />
+            <img src={`${APISTORAGE}tours/${data.image2}`} alt="" />
           </div>
           <div className="trip-info">
             <div className="price">
