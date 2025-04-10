@@ -4,13 +4,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 0 12%;
+    .Galleri-con {
+        padding: 0 12%;
+        @media (max-width: 1300px) {
+            padding: 0 6%;
+        }
 
-    @media (max-width: 1300px) {
-        padding: 0 6%;
-    }
-
-    @media (max-width: 767px) {
-        padding: 0 1%;
+        @media (max-width: 767px) {
+            padding: 0 1%;
+        }
     }
 }

@@ -5,6 +5,7 @@ import CountdownTimer from "./CountdownTimer";
 import Loader from "./Loader";
 import Error from "./Error";
 import { NavLink } from "react-router-dom";
+import DOMPurify from 'dompurify';
 
 const Trips = () => {
     const APIURL = import.meta.env.VITE_APP_API;
@@ -33,7 +34,7 @@ const Trips = () => {
                     </figure>
                     <div className="info">
                         <p className="title">{item.title}</p>
-                        <div className="content" dangerouslySetInnerHTML={{ __html: item.content }} />
+                        <div className="content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.content) }} />
                         <CountdownTimer launchDate={item.spacelaunch} />
                         <NavLink to={`/ture/${item._id}`}>Se mere</NavLink>
                     </div>

@@ -133,7 +133,7 @@ const Header = () => {
               <span>Kontakt</span>
             </NavLink>
           </li>
-          {user &&
+          {user ?
             <li>
               <NavLink
                 to="/admin/dashboard"
@@ -141,6 +141,16 @@ const Header = () => {
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <div className="bar" />
                 <span>Dashboard</span>
+              </NavLink>
+            </li>
+            :
+            <li>
+              <NavLink
+                to="/login"
+                onClick={() => CloseMobileMenu()}
+                className={({ isActive }) => (isActive ? "active" : "")}>
+                <div className="bar" />
+                <span>Login</span>
               </NavLink>
             </li>
           }

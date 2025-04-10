@@ -4,7 +4,7 @@ import Loader from './Loader';
 import Error from './Error';
 import "./Gallery.scss";
 
-const Gallery = () => {
+const Gallery = ({ addtitle }) => {
     const APIURL = import.meta.env.VITE_APP_API;
     const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
@@ -36,7 +36,7 @@ const Gallery = () => {
 
     return (
         <section id="Gallery">
-            <h3>Galleri</h3>
+            {addtitle && <h3>Galleri</h3>}
             <div className="Gallery-con">
                 {isMobile ? (
                     <>

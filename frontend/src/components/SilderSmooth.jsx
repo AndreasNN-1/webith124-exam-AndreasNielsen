@@ -29,8 +29,8 @@ const SilderSmooth = () => {
               style={{ transform: `translateY(-${currentIndex * 100}%)` }}
             >
               <div className="texts">
-                <p>{slide.content}</p>
-                <h2>{slide.title}</h2>
+                <h2>{slide.content}</h2>
+                <h1>{slide.title}</h1>
               </div>
               <img
                 src={`${APISTORAGE}banner/${slide.image}`}

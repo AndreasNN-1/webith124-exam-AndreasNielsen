@@ -13,7 +13,7 @@ const Banner = ({ silder, custom }) => {
                 <div className="custom">
                     <img src={`${APPSTORAGE}${custom.img}`} alt={custom.img.slice(".")[0]} />
                     <div className='title'>
-                        <h2>{custom.text}</h2>
+                        <h1>{custom.text}</h1>
                     </div>
                 </div>
             )}

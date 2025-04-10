@@ -1,10 +1,13 @@
 import React from "react";
 import Safety from "../components/Safety";
+import Info from "../components/Info";
+import Banner from "../components/Banner";
 
 const Sikkerhed = () => {
   return (
     <article id="Sikkerhed">
-      <Safety />
+      <Banner custom={{ img: "safetyBanner.jpg", text: "Sikkerhed" }} />
+      <Info title="om vores sikkerhed" img="safty.jpg" api="safety" />
     </article>
   );
 };

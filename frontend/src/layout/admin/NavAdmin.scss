@@ -11,9 +11,11 @@
     width: 5rem;
 
     .site-logo {
+      margin-bottom: 2rem;
       .button-con {
         #OpenToggle {
           margin-left: 0;
+          transform: rotateY(180deg);
         }
       }
     }
@@ -132,17 +134,19 @@
         width: 2rem;
         background-color: transparent;
         padding: 0;
+        border: none;
+        transition: transform 300ms ease, color 200ms ease;
+        transform: rotateY(0deg);
+        color: var(--primary);
 
         svg {
           width: 100%;
           height: 100%;
-          color: var(--text-fade);
         }
 
         &:hover {
-          svg {
-            color: var(--text-color);
-          }
+          border: none;
+          color: var(--highlight);
         }
       }
     }
@@ -169,17 +173,16 @@
         align-items: center;
         border-left: 2px solid transparent;
         text-decoration: none;
-        color: var(--text-fade);
+        color: var(--secondary);
 
         &:hover {
-          color: var(--text-color);
-          border-left: 2px solid var(--primary);
-          background-color: var(--background-fade);
+          color: var(--primary);
+          border-left: 2px solid var(--highlight);
         }
 
         &.active {
-          color: var(--text-color);
-          border-left: 2px solid var(--primary);
+          color: var(--primary);
+          border-left: 2px solid var(--highlight);
         }
       }
 
@@ -225,7 +228,7 @@
         display: flex;
         justify-content: start;
         align-items: center;
-        color: var(--text-color);
+        color: var(--primary);
       }
     }
 
@@ -233,7 +236,7 @@
       width: auto;
       height: auto;
       font-size: 1rem;
-      color: var(--text-color);
+      color: var(--primary);
       background-color: var(--background-fade);
       border: none;
       padding: 0.4rem 0.8rem;
@@ -246,7 +249,7 @@
       transition: gap ease 250ms;
 
       &:hover {
-        background-color: var(--primary);
+        background-color: var(--highlight);
         gap: 0.6rem;
       }
     }
@@ -262,7 +265,7 @@
         width: 35px;
         height: 4px;
         border-radius: 2px;
-        background-color: var(--text-color);
+        background-color: var(--primary);
         margin: 4px 0;
         transition: 0.3s;
       }
@@ -302,6 +305,14 @@
     overflow: visible;
     position: relative;
     z-index: 2;
+
+    &.closed {
+      width: 100%;
+
+      .site-logo {
+        margin: 0;
+      }
+    }
 
     .site-logo {
       background-color: var(--background-lige);

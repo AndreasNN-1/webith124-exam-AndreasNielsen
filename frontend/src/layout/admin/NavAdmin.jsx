@@ -14,6 +14,21 @@ const NavAdmin = () => {
   const { RunConfirmation } = useContext(NotificationContext);
   const [closed, setClosed] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 767);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const Logout = async () => {
     const YesTosignOut = await RunConfirmation(
@@ -30,7 +45,7 @@ const NavAdmin = () => {
   };
 
   return (
-    <nav id="Admin-Nav" className={closed ? "closed" : ""}>
+    <nav id="Admin-Nav" className={isMobile ? "" : (closed ? "closed" : "")}>
       <div className="site-logo">
         <NavLink to="/admin/dashboard" className="logo">
           <img src="/SiteAssets/icons/favicon.ico" alt="logo" />
