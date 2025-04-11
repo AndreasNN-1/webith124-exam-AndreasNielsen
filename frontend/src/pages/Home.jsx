@@ -10,7 +10,7 @@ const Home = () => {
     <article id="Home">
       <Banner silder={true} />
       <TurePreview />
-      <Info title="Lidt om os" img="om-os.jpg" api="about" links={{ link: "kontakt", name: "Kontakt os" }} />
+      <Info title="Lidt om os" img="om-os.jpg" api="about" links={{ link: "kontakt", name: "Kontakt os" }} local={true} />
       <Team />
       <NewsLetter />
     </article>

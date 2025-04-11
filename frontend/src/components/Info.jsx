@@ -6,7 +6,7 @@ import Error from "./Error";
 import { NavLink } from "react-router-dom";
 import DOMPurify from 'dompurify';
 
-const Info = ({ title, img, api, links }) => {
+const Info = ({ title, img, api, links, local }) => {
     const APIURL = import.meta.env.VITE_APP_API;
     const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
@@ -30,10 +30,10 @@ const Info = ({ title, img, api, links }) => {
                 {dataOm && (
                     <>
                         <div className="Info-img-con">
-                            <img src={dataOm.image && dataOm.image !== "om-os.jpg" ?  `${APISTORAGE}${dataOm.image}` : `${APPSTORAGE}${img}`} alt="om-os" />
+                            <img src={local ? `${APPSTORAGE}${img}` : `${APISTORAGE}spacecraft/${dataOm.image}`} alt="om-os" />
                         </div>
                         <div className="content">
-                            <h3>{title}</h3>
+                            {title && <h3>{title}</h3>}
                             <div className="title-con">
                                 <div className="title">
                                     <p>{dataOm.title}</p>

@@ -18,7 +18,7 @@ const TurePreview = () => {
             <div className="Tures">
                 {isLoading && <Loader />}
                 {error && <Error />}
-                {data && data.map((item, index) => (
+                {data && data.slice(0, 2).map((item, index) => (
                     <NavLink to={`/ture/${item._id}`} key={index} className="item">
                         <div className="texts">
                             <p>{item.destination}</p>

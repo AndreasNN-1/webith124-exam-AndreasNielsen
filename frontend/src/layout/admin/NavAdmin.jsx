@@ -94,15 +94,6 @@ const NavAdmin = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/admin/account"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <MdAccountBox />
-            <span>Account</span>
-          </NavLink>
-        </li>
-        <li>
           <button className="LogOut" onClick={() => Logout()}>
             <span>logout</span>
             <MdLogout />

@@ -7,7 +7,7 @@ const Sikkerhed = () => {
   return (
     <article id="Sikkerhed">
       <Banner custom={{ img: "safetyBanner.jpg", text: "Sikkerhed" }} />
-      <Info title="om vores sikkerhed" img="safty.jpg" api="safety" />
+      <Info title="om vores sikkerhed" img="safty.jpg" api="safety" local={true} />
     </article>
   );
 };

@@ -14,6 +14,8 @@ import UdvalgtTur from "./pages/UdvalgtTur";
 import TureAdmin from "./pages/admin/TureAdmin";
 import EditTureAdmin from "./pages/admin/EditTureAdmin";
 import UploadTureAdmin from "./pages/admin/UploadTureAdmin";
+import RumfærgenAdmin from "./pages/admin/RumfærgenAdmin";
+import EditRumfærgenAdmin from "./pages/admin/EditRumfærgenAdmin";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,7 +41,8 @@ function App() {
         { path: "/admin/ture", element: <TureAdmin /> },
         { path: "/admin/ture/:id", element: <EditTureAdmin /> },
         { path: "/admin/ture/upload", element: <UploadTureAdmin /> },
-        { path: "/admin/rumfærgen", element: <HomeAdmin /> },
+        { path: "/admin/rumfærgen", element: <RumfærgenAdmin /> },
+        { path: "/admin/rumfærgen/edit", element: <EditRumfærgenAdmin /> },
         { path: "/admin/account", element: <HomeAdmin /> },
       ],
     },

@@ -91,7 +91,7 @@ const Header = () => {
             </div>
             <ul className={`extra-links ${dropdown ? "active" : ""}`}>
               {data && data.length > 0 ? (
-                data.map((item, index) => (
+                data.slice(0, 3).map((item, index) => (
                   <li key={index}>
                     <NavLink
                       to={`/ture/${item._id}`}
@@ -104,6 +104,17 @@ const Header = () => {
               ) : (
                 <li><span>Ingen ture</span></li>
               )}
+              {data && data.length >= 4 && (
+                <li>
+                  <NavLink
+                    to="/ture"
+                    onClick={() => CloseMobileMenu()}
+                    className={({ isActive }) => (isActive ? "active" : "")}>
+                    Se Alle
+                  </NavLink>
+                </li>
+              )}
+
             </ul>
           </li>
           <li>

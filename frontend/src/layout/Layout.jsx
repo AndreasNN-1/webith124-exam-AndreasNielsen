@@ -14,11 +14,11 @@ const Layout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const newPageTitle = `SpaceVenture - ${location.pathname}`;
-    if (location.pathname === "/") {
-      document.title = newPageTitle.replace("/", "home");
+    if (location.pathname !== "/") {
+      const newPageTitle = `SpaceVenture - ${location.pathname.slice(1).split("/").join(" - ").replace("%C3%A6", "æ")}`;
+      document.title = newPageTitle;
     } else {
-      document.title = newPageTitle.replace("/", "");
+      document.title = "SpaceVenture - hjem";
     }
     window.scrollTo({
       top: 0,

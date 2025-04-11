@@ -36,7 +36,17 @@ const EditTureAdmin = () => {
 
   const { RunNotification, RunConfirmation } = useContext(NotificationContext);
   const { id } = useParams();
-  const [editData, setEditData] = useState({});
+  const [editData, setEditData] = useState({
+    title: "",
+    image1: null,
+    image2: null,
+    traveltime: "",
+    distance: "",
+    content: "",
+    destination: "",
+    price: "",
+    spacelaunch: "",
+  });
   const { makeRequest, isLoading, data, error } = useRequstData();
   const {
     makeRequest: makeRequestPUT,
@@ -64,8 +74,8 @@ const EditTureAdmin = () => {
       }));
     }
     if (!refQuill.current && data) {
-        refQuill.current = new Quill(refQuillContainer.current, quillOptions);
-      }
+      refQuill.current = new Quill(refQuillContainer.current, quillOptions);
+    }
   }, [data]);
 
   const handleChange = (name, value) => {
@@ -111,8 +121,18 @@ const EditTureAdmin = () => {
 
   useEffect(() => {
     if (dataPUT) {
-      RunNotification(200, "opdateret!", "Ture er du opdateret");
-      setEditData({});
+      RunNotification(200, "opdateret!", "Ture er nu opdateret");
+      setEditData({
+        title: "",
+        image1: null,
+        image2: null,
+        traveltime: "",
+        distance: "",
+        content: "",
+        destination: "",
+        price: "",
+        spacelaunch: "",
+      });
       navigate("/admin/ture");
     }
     if (errorPUT) {
@@ -144,7 +164,16 @@ const EditTureAdmin = () => {
   useEffect(() => {
     if (dataDELETE) {
       RunNotification(200, "opdateret!", "Turen er nu slettet");
-      setEditData({});
+      setEditData({
+        title: "",
+        image1: null,
+        image2: null,
+        traveltime: "",
+        distance: "",
+        destination: "",
+        price: "",
+        spacelaunch: "",
+      });
       navigate("/admin/ture");
     }
     if (errorDELETE) {
@@ -284,21 +313,29 @@ const EditTureAdmin = () => {
             </div>
           </div>
           <div className="options">
-            <button
-              type="submit"
-              disabled={isLoading || isLoadingDELETE || isLoadingPUT}
-              onClick={(e) => handleSubmit(e)}
-            >
-              Gem ændringer
-            </button>
-            <button
-              type="reset"
-              className="slet"
-              disabled={isLoading || isLoadingDELETE || isLoadingPUT}
-              onClick={(e) => handleDelete(e)}
-            >
-              Slet ture
-            </button>
+            {isLoadingDELETE || isLoadingPUT ?
+              (
+                <Loader />
+              ) : (
+                <>
+                  <button
+                    type="submit"
+                    disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                    onClick={(e) => handleSubmit(e)}
+                  >
+                    Gem ændringer
+                  </button>
+                  <button
+                    type="reset"
+                    className="slet"
+                    disabled={isLoading || isLoadingDELETE || isLoadingPUT}
+                    onClick={(e) => handleDelete(e)}
+                  >
+                    Slet ture
+                  </button>
+                </>
+              )
+            }
           </div>
         </form>
       )}

@@ -107,15 +107,24 @@ const UploadTureAdmin = () => {
 
   useEffect(() => {
     if (data) {
-      RunNotification(200, "opdateret!", "Ture er du opdateret");
-      setEditData({});
+      RunNotification(200, "uploaded!", "New ture er nu Uploaded");
+      setEditData({
+        title: "",
+        image1: null,
+        image2: null,
+        traveltime: "",
+        distance: "",
+        destination: "",
+        price: "",
+        spacelaunch: "",
+      });
       navigate("/admin/ture");
     }
     if (error) {
       RunNotification(
         400,
         "opdatering fejlet",
-        "Der opstod en fejl under opdateringen af denne ture"
+        "Der opstod en fejl under Uploading af denne ture"
       );
     }
   }, [data, error]);
@@ -249,13 +258,19 @@ const UploadTureAdmin = () => {
             </div>
           </div>
           <div className="options">
-            <button
-              type="submit"
-              disabled={isLoading}
-              onClick={(e) => handleSubmit(e)}
-            >
-              Upload Ture
-            </button>
+            {isLoading ?
+              (
+                <Loader />
+              ) : (
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  onClick={(e) => handleSubmit(e)}
+                >
+                  Upload Ture
+                </button>
+              )
+            }
           </div>
         </form>
       )}

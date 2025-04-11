@@ -9,7 +9,7 @@ const LayoutAdmin = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const newPageTitle = location.pathname.slice(1).split("/").join(" - ");
+    const newPageTitle = location.pathname.slice(1).split("/").join(" - ").replace("%C3%A6", "æ");
     document.title = newPageTitle;
   }, [location]);
 
