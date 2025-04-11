@@ -87,7 +87,9 @@ const EditTureAdmin = () => {
     // check for missing inputs
     if (
       editData.title?.trim() == "" ||
-      refQuill.current == "" ||
+
+      // SOO LONG
+      refQuill.current.editor.delta.ops[0]?.insert.replace("\n", " ").trim() == "" ||
       editData.traveltime?.trim() == "" ||
       editData.distance?.trim() == "" ||
       editData.price?.trim() == "" ||

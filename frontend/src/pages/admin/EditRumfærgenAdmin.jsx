@@ -75,7 +75,7 @@ const EditRumfærgenAdmin = () => {
         if (
             // check for errors
             editData.title?.trim() == "" ||
-            refQuill.current == "" ||
+            refQuill.current.editor.delta.ops[0]?.insert.replace("\n", " ").trim() == "" ||
             editData.image == null
         ) {
             RunNotification(400, "tomme felter", "Venligst udfyld alle felter i formen");

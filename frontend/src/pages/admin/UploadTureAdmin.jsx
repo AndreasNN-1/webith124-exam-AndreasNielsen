@@ -70,7 +70,9 @@ const UploadTureAdmin = () => {
     // check if ok?
     if (
       editData.title?.trim() == "" ||
-      refQuilltWO.current == "" ||
+
+      // it works!
+      refQuilltWO.current.editor.delta.ops[0]?.insert.replace("\n", " ").trim() == "" ||
       editData.traveltime?.trim() == "" ||
       editData.distance?.trim() == "" ||
       editData.destination?.trim() == "" ||
