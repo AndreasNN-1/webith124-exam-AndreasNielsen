@@ -7,7 +7,7 @@ const Rumfærgen = () => {
   return (
     <article id="Rumfærgen">
       <Banner custom={{ img: "banner-spaceship.jpg", text: "Rumfærgen" }} />
-      <Info api="spacecraft" />
+      <Info title="Hvorfor vælge os" api="spacecraft" />
       <Gallery addtitle={true} />
     </article>
   );
