@@ -8,6 +8,7 @@ const SilderSmooth = () => {
   const APIURL = import.meta.env.VITE_APP_API;
   const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [animeOut, setAnimeOut] = useState(null);
   const { makeRequest, isLoading, data, error } = useRequstData();
   const Timer = useRef(null);
 
@@ -17,8 +18,12 @@ const SilderSmooth = () => {
 
   const NextSilde = () => {
     if (data) {
+      ANimeOut();
       setCurrentIndex((prev) => (prev + 1) % data.length);
     }
+  };
+  const ANimeOut = () => {
+    setAnimeOut(currentIndex);
   };
 
   useEffect(() => {
@@ -29,13 +34,12 @@ const SilderSmooth = () => {
     };
   }, [data]);
 
-
   const handleSliderEvent = (index) => {
+    ANimeOut();
     setCurrentIndex(index);
     clearInterval(Timer.current);
     Timer.current = setInterval(NextSilde, 10000);
   };
-
 
   return (
     <div id="SilderSmooth">
@@ -60,12 +64,14 @@ const SilderSmooth = () => {
               />
             </div>
           ))}
-        {Array.isArray(data) && (
+        {data && (
           <div className="dots-con">
             {data.map((_, index) => (
               <div
                 key={index}
-                className={`dot ${currentIndex === index ? "active" : ""}`}
+                className={`dot ${currentIndex === index ? "active" : ""} ${
+                  animeOut === index ? "animeout" : ""
+                }`}
                 onClick={() => handleSliderEvent(index)}
               />
             ))}

@@ -91,7 +91,7 @@ const Header = () => {
             </div>
             <ul className={`extra-links ${dropdown ? "active" : ""}`}>
               {data && data.length > 0 ? (
-                data.slice(0, 3).map((item, index) => (
+                data.slice(0, 3).sort((a, b)=> {return new Date(a.spacelaunch) - new Date(b.spacelaunch)}).map((item, index) => (
                   <li key={index}>
                     <NavLink
                       to={`/ture/${item._id}`}

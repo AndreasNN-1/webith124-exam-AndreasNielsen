@@ -27,7 +27,7 @@ const TureAdmin = () => {
             <NavLink to="/admin/ture/upload" className="btn">Upload ny ture</NavLink>
             {isLoading && <Loader />}
             {error && <Error />}
-            {data && data.map((item, index) => (
+            {data && data.sort((a, b)=> {return new Date(a.spacelaunch) - new Date(b.spacelaunch)}).map((item, index) => (
                 <div key={index} className="Trips-item">
                     <div className="price">
                         {item.price}

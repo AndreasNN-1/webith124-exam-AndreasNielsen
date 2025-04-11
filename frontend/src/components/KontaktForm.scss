@@ -1,220 +1,222 @@
 #KontaktForm {
+  width: 100%;
+  height: auto;
+  padding: 4rem 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .title {
     width: 100%;
-    height: auto;
-    padding: 4rem 12%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 1rem 0;
+
+    h4 {
+      font-size: 2rem;
+      line-height: 2rem;
+      padding-right: 1rem;
+      border-right: 2px solid var(--secondary);
+      color: var(--text-color);
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      padding-left: 1rem;
+      color: var(--text-color);
+    }
+  }
+
+  .send {
+    width: 100%;
+    max-width: 1600px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 6rem 0;
+    background-color: var(--secondary);
+    border-radius: 1rem;
+    gap: 1rem;
 
-    .title {
-        width: 100%;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        padding: 1rem 0;
-
-        h4 {
-            font-size: 2rem;
-            line-height: 2rem;
-            padding-right: 1rem;
-            border-right: 2px solid var(--secondary);
-            color: var(--text-color);
-        }
-
-        p {
-            font-size: 1.2rem;
-            line-height: 1.2rem;
-            padding-left: 1rem;
-            color: var(--text-color);
-        }
+    h5 {
+      font-size: 2rem;
     }
 
-    .send {
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  .Kontakt-Form {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    label {
+      position: relative;
+      width: calc(33% - 0.5rem);
+      border: 1px solid transparent;
+
+      input,
+      textarea {
         width: 100%;
-        max-width: 1600px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 6rem 0;
         background-color: var(--secondary);
-        border-radius: 1rem;
-        gap: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0;
+        outline: none;
+        padding: 1.4rem;
+        font-size: 1rem;
+        color: var(--text-color);
 
-        h5 {
-            font-size: 2rem;
+        &:focus {
+          border: 1px solid var(--text-fade);
         }
+      }
 
-        p {
-            font-size: 1.2rem;
+      textarea {
+        width: 100%;
+        min-height: 5rem;
+        height: 10rem;
+        max-height: 15rem;
+        resize: vertical;
+      }
+
+      &:last-of-type {
+        width: 100%;
+      }
+
+      span {
+        position: absolute;
+        top: 0;
+        right: 0.6rem;
+        color: red;
+      }
+
+      &.error {
+        border: 1px solid red;
+
+        input,
+        textarea {
+          &:focus {
+            border: 1px solid red;
+          }
         }
+      }
+    }
+
+    .options {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      button {
+        width: auto;
+        height: auto;
+        padding: 1rem 6rem;
+        border-radius: 0;
+
+        &:hover {
+          background-color: var(--secondary);
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1300px) {
+    padding: 4rem 5%;
+
+    .send {
+      h5 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
     }
 
     .Kontakt-Form {
+      gap: 0.7rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 4rem 0;
+
+    gap: 1.6rem;
+
+    .title {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 1rem 0;
+      gap: 0.6rem;
+
+      h4 {
+        font-size: 2.3rem;
+        line-height: 2.3rem;
+        padding: 0;
+        border: none;
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        padding: 0;
+      }
+    }
+
+    .send {
+      padding: 6rem 2vw;
+
+      h5 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .Kontakt-Form {
+      justify-content: center;
+      gap: 1rem;
+      label {
         width: 100%;
-        max-width: 1600px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-
-
-
-        label {
-            position: relative;
-            width: calc(33% - 0.5rem);
-            border: 1px solid transparent;
-
-
-            input,
-            textarea {
-                width: 100%;
-                background-color: var(--secondary);
-                border: 1px solid transparent;
-                border-radius: 0;
-                outline: none;
-                padding: 1.4rem;
-                font-size: 1rem;
-                color: var(--text-color);
-
-                &:focus {
-                    border: 1px solid var(--text-fade);
-                }
-            }
-
-            textarea {
-                width: 100%;
-                min-height: 5rem;
-                height: 10rem;
-                max-height: 15rem;
-                resize: vertical;
-            }
-
-            &:last-of-type {
-                width: 100%;
-            }
-
-            span {
-                position: absolute;
-                top: 0;
-                right: 0.6rem;
-                color: red;
-            }
-
-            &.error {
-                border: 1px solid red;
-
-                input,
-                textarea {
-
-                    &:focus {
-                        border: 1px solid red;
-                    }
-                }
-            }
+        input,
+        textarea {
+          padding: 1.2rem;
         }
 
-        button {
-            width: auto;
-            height: auto;
-            padding: 1rem 6rem;
-            border-radius: 0;
-
-            &:hover {
-                background-color: var(--secondary);
-                color: var(--text-color);
-            }
+        textarea {
+          min-height: 4rem;
+          height: 8rem;
+          max-height: 12rem;
         }
+      }
+
+      button {
+        width: 100%;
+        height: auto;
+        padding: 1rem 0;
+        border-radius: 0;
+
+        &:hover {
+          background-color: var(--secondary);
+          color: var(--text-color);
+        }
+      }
     }
-
-    @media (max-width: 1300px) {
-        padding: 4rem 5%;
-
-        .send {
-            h5 {
-                font-size: 1.8rem;
-            }
-
-            p {
-                font-size: 1.1rem;
-            }
-        }
-
-        .Kontakt-Form {
-            gap: 0.7rem;
-        }
-    }
-
-    @media (max-width: 767px) {
-        padding: 4rem 0;
-
-        gap: 1.6rem;
-
-        .title {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 1rem 0;
-            gap: 0.6rem;
-
-            h4 {
-                font-size: 2.3rem;
-                line-height: 2.3rem;
-                padding: 0;
-                border: none;
-            }
-
-            p {
-                font-size: 1.2rem;
-                line-height: 1.2rem;
-                padding: 0;
-            }
-        }
-
-        .send {
-            padding: 6rem 2vw;
-
-            h5 {
-                font-size: 1.6rem;
-            }
-
-            p {
-                font-size: 1.2rem;
-            }
-        }
-
-        .Kontakt-Form {
-            justify-content: center;
-            gap: 1rem;
-            label {
-                width: 100%;
-                input,
-                textarea {
-                    padding: 1.2rem;
-                }
-
-                textarea {
-                    min-height: 4rem;
-                    height: 8rem;
-                    max-height: 12rem;
-                }
-            }
-
-            button {
-                width: 100%;
-                height: auto;
-                padding: 1rem 0;
-                border-radius: 0;
-
-                &:hover {
-                    background-color: var(--secondary);
-                    color: var(--text-color);
-                }
-            }
-        }
-    }
+  }
 }

@@ -24,8 +24,7 @@ const SelectedTure = () => {
       {isLoading && <Loader />}
       {error &&
         <div className="error">
-          <Error />
-          <p>ingen ture fundet</p>
+          <h4>ingen ture fundet</h4>
           <NavLink to="/ture">Gå tilbage</NavLink>
         </div>
       }

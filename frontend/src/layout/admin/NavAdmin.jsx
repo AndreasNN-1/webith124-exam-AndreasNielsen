@@ -60,6 +60,7 @@ const NavAdmin = () => {
         <li>
           <NavLink
             to="/"
+            onClick={() => toggleMobileMenu()}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <FaHome />
@@ -69,6 +70,7 @@ const NavAdmin = () => {
         <li>
           <NavLink
             to="/admin/dashboard"
+            onClick={() => toggleMobileMenu()}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <BiSolidDashboard />
@@ -78,6 +80,7 @@ const NavAdmin = () => {
         <li>
           <NavLink
             to="/admin/ture"
+            onClick={() => toggleMobileMenu()}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <FaRocket />
@@ -87,6 +90,7 @@ const NavAdmin = () => {
         <li>
           <NavLink
             to="/admin/rumfærgen"
+            onClick={() => toggleMobileMenu()}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <FaShip />
