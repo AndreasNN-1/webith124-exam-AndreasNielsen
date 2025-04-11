@@ -6,33 +6,39 @@ import "./Gallery.scss";
 
 const Gallery = ({ addtitle }) => {
     const APIURL = import.meta.env.VITE_APP_API;
-    const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
-    const {
-        makeRequest: makeRequest,
-        isLoading: isLoading,
-        data: data,
-        error: error,
-    } = useRequstData();
+    const { makeRequest: makeRequest, isLoading: isLoading, data: data, error: error } = useRequstData();
+
+
 
     useEffect(() => {
         const handleResize = () => {
+            // true - false
             setIsMobile(window.innerWidth < 767);
         };
 
+        // run a check immediately
         handleResize();
 
+        // make a addEventListener for resize = run handleResize
         window.addEventListener('resize', handleResize);
+
+        // remove addEventListener when unloaded saves memory :)
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
+
+
     useEffect(() => {
         makeRequest(`${APIURL}Gallery`, "GET");
     }, []);
+
+
 
     return (
         <section id="Gallery">
@@ -51,7 +57,7 @@ const Gallery = ({ addtitle }) => {
                                         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                                     >
                                         <img
-                                            src={`${APPSTORAGE}${slide.image}`}
+                                            src={`${APISTORAGE}gallery/${slide.image}`}
                                             className="img"
                                             alt={`slide-${index}`}
                                         />
@@ -59,7 +65,7 @@ const Gallery = ({ addtitle }) => {
                                 ))
                             }
                         </div>
-                        {Array.isArray(data) && (
+                        {data && (
                             <div className="dots-con">
                                 {data.map((_, index) => (
                                     <div
@@ -77,7 +83,7 @@ const Gallery = ({ addtitle }) => {
                         {error && <Error />}
                         {data && data.map((item, index) => (
                             <div key={index} className="item">
-                                <img src={`${APPSTORAGE}${item.image}`} alt={item.imagetext} />
+                                <img src={`${APISTORAGE}gallery/${item.image}`} alt={item.imagetext} />
                             </div>
                         ))}
                     </>

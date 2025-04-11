@@ -3,13 +3,16 @@ import { useEffect } from "react";
 import "./Notification.scss";
 
 const Notification = ({ notification, time, handleClose }) => {
-  if (!notification) return null;
+
+
+  // start timer to close Notification after time * 1000
   useEffect(() => {
-    if (!notification) return;
     const timer = setTimeout(() => {
       handleClose(notification.id);
     }, time * 1000);
 
+
+    // remove setTimeout if commpont is gone
     return () => clearTimeout(timer);
   }, []);
 

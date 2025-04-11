@@ -10,22 +10,35 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+
+    // if user is not null send to admin
     if (user) return <Navigate to="/admin/dashboard" replace />;
 
+
     const validate = async (email, password) => {
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+        // validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
             return { valit: false, message: "Indtast gyldig e-mailadresse." };
         }
+        // min length = 6
         if (password.length < 6) {
             return { valit: false, message: "Adgangskoden skal være mindst 6 tegn." };
         }
+        
+
         return { valit: true };
     };
 
+
+    // submit
     const submitLogin = async (e) => {
         e.preventDefault();
         setErrorMessage("");
 
+
+        // wait for validate() ^^
         const validation = await validate(email, password);
         if (validation.valit === false) {
             setErrorMessage(validation.message);

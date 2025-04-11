@@ -8,11 +8,18 @@ const LayoutAdmin = () => {
   const { user } = useContext(LoginContext);
   const location = useLocation();
 
+
+  // set pages titles
   useEffect(() => {
+    console.log(location.pathname.slice(0));
+    // remove frist / then make the sections into an array the join the array back to one with - then replace %C3%A6 with æ     
+    // NOTE idk why it makes it say %C3%A6 
     const newPageTitle = location.pathname.slice(1).split("/").join(" - ").replace("%C3%A6", "æ");
     document.title = newPageTitle;
   }, [location]);
 
+
+  // check if user else go away
   if (!user) {
     return <Navigate to="/login" replace />;
   }

@@ -7,6 +7,8 @@ const Safety = () => {
     const APIURL = import.meta.env.VITE_APP_API;
     const { makeRequest, isLoading, data, error } = useRequstData();
 
+
+    // yooo get the stuff from APIURL/safety, nice.
     useEffect(() => {
         makeRequest(`${APIURL}safety`, "GET");
     }, []);

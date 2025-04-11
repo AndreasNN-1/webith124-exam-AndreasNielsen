@@ -7,6 +7,8 @@ const Lightbox = ({ data, starter, onclose }) => {
     const LightboxRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(starter);
 
+
+    // check clicking Lightbox-container
     const handleBackgroundClick = (e) => {
         if (!LightboxRef.current?.contains(e.target)) {
             onclose();
@@ -14,6 +16,7 @@ const Lightbox = ({ data, starter, onclose }) => {
     };
 
     const handleKeyDown = (e) => {
+        // check keys down and use modulo operator for looping
         if (e.key === "ArrowRight") {
             setCurrentIndex((prev) => (prev + 1) % data.length);
         } else if (e.key === "ArrowLeft") {
@@ -24,7 +27,10 @@ const Lightbox = ({ data, starter, onclose }) => {
     };
 
     useEffect(() => {
+        // add addEventListener
         document.addEventListener("keydown", handleKeyDown);
+
+        // remove addEventListener
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
         };

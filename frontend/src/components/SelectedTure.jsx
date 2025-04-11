@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import useRequstData from "../hooks/useRequstData";
 import Loader from "../components/Loader";
-import Error from "../components/Error";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import "./SelectedTure.scss";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
@@ -10,11 +9,15 @@ import DOMPurify from 'dompurify';
 
 const SelectedTure = () => {
   const { id } = useParams();
+  const location = useLocation();
+
   const APIURL = import.meta.env.VITE_APP_API;
   const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
 
   const { makeRequest, isLoading, data, error } = useRequstData();
-  const location = useLocation();
+  
+
+  // update the ture if url updats
   useEffect(() => {
     makeRequest(`${APIURL}tours/${id}`, "GET");
   }, [location]);

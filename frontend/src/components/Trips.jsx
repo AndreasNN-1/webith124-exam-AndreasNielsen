@@ -10,16 +10,15 @@ import DOMPurify from 'dompurify';
 const Trips = () => {
     const APIURL = import.meta.env.VITE_APP_API;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
-    const {
-        makeRequest: makeRequest,
-        isLoading: isLoading,
-        data: data,
-        error: error,
-    } = useRequstData();
 
+    const { makeRequest: makeRequest, isLoading: isLoading, data: data, error: error } = useRequstData();
+
+
+    // no comment here. 
     useEffect(() => {
         makeRequest(`${APIURL}tours`, "GET");
     }, []);
+
     return (
         <section id="Trips">
             {isLoading && <Loader />}

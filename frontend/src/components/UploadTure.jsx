@@ -4,40 +4,46 @@ import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 import useRequstData from "../../hooks/useRequstData";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { NotificationContext } from "../../context/NotificationContext";
 
 const UploadTure = () => {
+    const { RunNotification, RunConfirmation } = useContext(NotificationContext);
+
     const APIURL = import.meta.env.VITE_APP_API;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
 
     const navigate = useNavigate();
-
-    const { RunNotification, RunConfirmation } = useContext(NotificationContext);
-    const { id } = useParams();
     const [editData, setEditData] = useState({});
+    const { id } = useParams();
+
     const { makeRequest, isLoading, data, error } = useRequstData();
     const { makeRequest: makeRequestPUT, isLoading: isLoadingPUT, data: dataPUT, error: errorPUT } = useRequstData();
     const { makeRequest: makeRequestDELETE, isLoading: isLoadingDELETE, data: dataDELETE, error: errorDELETE } = useRequstData();
+
+
 
     useEffect(() => {
         makeRequest(`${APIURL}tours/${id}`, "GET");
     }, [id]);
 
+
+    // check if data 
     useEffect(() => {
         if (data) {
-            const sanitizedContent = DOMPurify.sanitize(data.content);
             setEditData(prevData => ({
                 ...prevData,
                 ...data,
+
+                // remove T00:00:00.000Z from 2025-10-01T00:00:00.000Z = "2025-10-01"
                 spacelaunch: data.spacelaunch.split("T")[0],
-                content: sanitizedContent,
             }));
         }
     }, [data]);
 
+
+    // update only name with value
     const handleChange = (name, value) => {
         setEditData(prev => ({ ...prev, [name]: value }));
     };
@@ -55,15 +61,13 @@ const UploadTure = () => {
             editData.price?.trim() == "" ||
             editData.spacelaunch?.trim() == ""
         ) {
-            RunNotification(
-                400,
-                "tomme felter",
-                "Venligst udfyld alle felter i formen"
-            );
+            RunNotification(400, "tomme felter", "Venligst udfyld alle felter i formen");
+            // end
             return;
         }
         const formData = new FormData();
 
+        //  ohhh god this looks bad
         if (editData.title) formData.append("title", editData.title);
         if (editData.content) formData.append("content", editData.content);
         if (editData.traveltime) formData.append("traveltime", editData.traveltime);
@@ -74,25 +78,18 @@ const UploadTure = () => {
         if (editData.image2 instanceof File) formData.append("image2", editData.image2);
 
         makeRequestPUT(`${APIURL}tours/admin/${id}`, "PUT", formData);
-        console.log(formData);
     };
 
+
+    // PUT response
     useEffect(() => {
         if (dataPUT) {
-            RunNotification(
-                200,
-                "opdateret!",
-                "Ture er du opdateret"
-            );
+            RunNotification(200, "opdateret!", "Ture er du opdateret");
             setEditData({});
             navigate("/admin/ture");
         }
         if (errorPUT) {
-            RunNotification(
-                400,
-                "opdatering fejlet",
-                "Der opstod en fejl under opdateringen af denne ture"
-            );
+            RunNotification(400, "opdatering fejlet", "Der opstod en fejl under opdateringen af denne ture");
         }
     }, [dataPUT, errorPUT]);
 
@@ -113,6 +110,8 @@ const UploadTure = () => {
         }
     }
 
+
+    // dELETE response
     useEffect(() => {
         if (dataDELETE) {
             RunNotification(

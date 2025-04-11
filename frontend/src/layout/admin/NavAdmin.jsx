@@ -17,29 +17,40 @@ const NavAdmin = () => {
   const [isMobile, setIsMobile] = useState(false);
 
 
+  // check window width when resizing the page
   useEffect(() => {
     const handleResize = () => {
+      // set true / false
       setIsMobile(window.innerWidth < 767);
     };
 
+    // insta run
     handleResize();
 
+
+
+    // add addEventListener
     window.addEventListener('resize', handleResize);
+
+    // remove addEventListener
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
+
+  // logOut user if yes
   const Logout = async () => {
-    const YesTosignOut = await RunConfirmation(
-      "Logout?",
-      "Do you want to Logout?"
-    );
+
+    // again am good at names
+    const YesTosignOut = await RunConfirmation("Logout?", "Do you want to Logout?");
     if (YesTosignOut) {
       signOut();
     }
   };
 
+
+  // close menu
   const toggleMobileMenu = () => {
     setOpen(false);
   };

@@ -10,9 +10,18 @@ import "quill/dist/quill.snow.css";
 import "./quill.scss";
 
 const UploadTureAdmin = () => {
+  const { RunNotification } = useContext(NotificationContext);
+
   const APIURL = import.meta.env.VITE_APP_API;
   const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
 
+  const navigate = useNavigate();
+  const [editData, setEditData] = useState({ title: "", image1: null, image2: null, traveltime: "", distance: "", destination: "", price: "", spacelaunch: "" });
+
+  const { makeRequest, isLoading, data, error } = useRequstData();
+
+
+  // Quill
   const refQuillContainerTwo = useRef();
   const refQuilltWO = useRef();
   const quillOptionss = {
@@ -31,21 +40,8 @@ const UploadTureAdmin = () => {
     },
   };
 
-  const navigate = useNavigate();
 
-  const { RunNotification } = useContext(NotificationContext);
-  const [editData, setEditData] = useState({
-    title: "",
-    image1: null,
-    image2: null,
-    traveltime: "",
-    distance: "",
-    destination: "",
-    price: "",
-    spacelaunch: "",
-  });
-  const { makeRequest, isLoading, data, error } = useRequstData();
-
+  // if quill is not started, start it
   useEffect(() => {
     if (!refQuilltWO.current) {
       refQuilltWO.current = new Quill(
@@ -54,16 +50,24 @@ const UploadTureAdmin = () => {
       );
     }
   }, []);
+  
 
+
+  // set value useing name of value
   const handleChange = (name, value) => {
     setEditData((prev) => ({ ...prev, [name]: value }));
   };
+
+
+
 
   // upload start
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
+    // check if ok?
     if (
       editData.title?.trim() == "" ||
       refQuilltWO.current == "" ||
@@ -75,57 +79,41 @@ const UploadTureAdmin = () => {
       editData.image1 == null ||
       editData.image2 == null
     ) {
-      RunNotification(
-        400,
-        "tomme felter",
-        "Venligst udfyld alle felter i formen"
-      );
+      RunNotification( 400, "tomme felter", "Venligst udfyld alle felter i formen");
       return;
     }
+
+
+
     let formData = new FormData();
 
     if (editData.title) formData.append("title", editData.title);
-    if (refQuilltWO.current)
-      formData.append(
-        "content",
-        refQuilltWO.current.getSemanticHTML().replace(/&nbsp;/g, " ")
-      );
+    if (refQuilltWO.current) formData.append("content", refQuilltWO.current.getSemanticHTML().replace(/&nbsp;/g, " "));
     if (editData.traveltime) formData.append("traveltime", editData.traveltime);
     if (editData.distance) formData.append("distance", editData.distance);
-    if (editData.destination)
-      formData.append("destination", editData.destination);
+    if (editData.destination) formData.append("destination", editData.destination);
     if (editData.price) formData.append("price", editData.price);
-    if (editData.spacelaunch)
-      formData.append("spacelaunch", editData.spacelaunch);
-    if (editData.image1 instanceof File)
-      formData.append("image1", editData.image1);
-    if (editData.image2 instanceof File)
-      formData.append("image2", editData.image2);
+    if (editData.spacelaunch) formData.append("spacelaunch", editData.spacelaunch);
 
+    // check is editData.image1 is a file
+    if (editData.image1 instanceof File) formData.append("image1", editData.image1);
+    if (editData.image2 instanceof File) formData.append("image2", editData.image2);
+
+
+    // send
     makeRequest(`${APIURL}tours/admin`, "POST", formData);
   };
 
+
+  // POST response
   useEffect(() => {
     if (data) {
       RunNotification(200, "uploaded!", "New ture er nu Uploaded");
-      setEditData({
-        title: "",
-        image1: null,
-        image2: null,
-        traveltime: "",
-        distance: "",
-        destination: "",
-        price: "",
-        spacelaunch: "",
-      });
+      setEditData({ title: "", image1: null, image2: null, traveltime: "", distance: "", destination: "", price: "", spacelaunch: "" });
       navigate("/admin/ture");
     }
     if (error) {
-      RunNotification(
-        400,
-        "opdatering fejlet",
-        "Der opstod en fejl under Uploading af denne ture"
-      );
+      RunNotification(400, "opdatering fejlet", "Der opstod en fejl under Uploading af denne ture");
     }
   }, [data, error]);
 

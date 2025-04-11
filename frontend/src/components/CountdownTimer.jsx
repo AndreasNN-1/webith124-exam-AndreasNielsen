@@ -5,6 +5,8 @@ const CountdownTimer = ({ launchDate }) => {
         const difference = new Date(launchDate) - new Date();
         if (difference <= 0) return null;
 
+
+        // return {days, hours, minutes, seconds}
         return {
             days: Math.floor(difference / (1000 * 60 * 60 * 24)),
             hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
@@ -15,6 +17,8 @@ const CountdownTimer = ({ launchDate }) => {
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
+
+    // start timer from the data (launchDate)
     useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft(calculateTimeLeft());
@@ -23,6 +27,8 @@ const CountdownTimer = ({ launchDate }) => {
         return () => clearInterval(timer);
     }, [launchDate]);
 
+
+    // if timeLeft is null return span
     if (!timeLeft) return <span className="timer">Er afsted</span>;
 
     const { days, hours, minutes, seconds } = timeLeft;

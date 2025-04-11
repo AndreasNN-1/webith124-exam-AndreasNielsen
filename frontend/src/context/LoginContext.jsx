@@ -71,9 +71,11 @@ const LoginContextProvider = (props) => {
     }
   }, [datalogOut, errorlogOut]);
 
+
+
   if (loading) {
     return null;
-}
+  }
 
   return (
     <LoginContext.Provider value={{ signIn, signOut, user }}>

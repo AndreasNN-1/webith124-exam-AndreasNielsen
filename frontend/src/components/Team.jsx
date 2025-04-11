@@ -7,29 +7,20 @@ import Error from "./Error";
 const Team = () => {
   const APIURL = import.meta.env.VITE_APP_API;
   const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
-  const {
-    makeRequest: makeRequest,
-    isLoading: isLoading,
-    data: data,
-    error: error,
-  } = useRequstData();
 
+  const { makeRequest: makeRequest, isLoading: isLoading, data: data, error: error } = useRequstData();
+
+  // get the good stuff ;)  [api stuff]
   useEffect(() => {
     makeRequest(`${APIURL}team`, "GET");
   }, []);
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <Error />;
-  }
 
   return (
     <section className="Team">
       <h3>Vores team</h3>
       <div className="members">
+        {isLoading && <Loader />}
+        {error && <Error />}
         {data &&
           data.map((team, index) => (
             <div key={index} className="member">

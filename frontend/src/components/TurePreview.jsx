@@ -6,6 +6,8 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 const TurePreview = () => {
   const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
 
+  // nice 
+  
   return (
     <section id="TurePreview">
       <div className="Tures">

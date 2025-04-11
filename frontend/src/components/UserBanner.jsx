@@ -5,6 +5,8 @@ import { LoginContext } from '../context/LoginContext';
 const UserBanner = () => {
     const { user } = useContext(LoginContext);
     const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
+
+    
     return (
         <section id="UserBanner">
             <img src={`${APPSTORAGE}userbanner.jpg`} alt="" />

@@ -6,32 +6,45 @@ import Error from "./Error";
 
 const NewsLetter = () => {
   const { RunNotification, RunConfirmation } = useContext(NotificationContext);
+
   const APIURL = import.meta.env.VITE_APP_API;
   const joined = localStorage.getItem("NewsLetter");
+
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
+
   const { makeRequest, isLoading, data, error } = useRequstData();
   const { makeRequest: makeRequestAfmeld, isLoading: isLoadingAfmeld, data: dataAfmeld, error: errorAfmeld } = useRequstData();
 
+
+  // POST - handle submit
   const Submit = (e) => {
     e.preventDefault();
 
+    // reset error
+    setShowError(false);
+
+    // remove dubble spaces
     const trimmedEmail = email.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(trimmedEmail) || trimmedEmail === "") {
-      setShowError(true);
-      return;
+      setShowError(true); return;
     }
-    setShowError(false);
-    const requestBody = { email: trimmedEmail };
 
+
+    const requestBody = { email: trimmedEmail };
     makeRequest(`${APIURL}newssubscription`, "POST", requestBody);
   };
 
+
+
+
+  // say ok to remove email from api
   const Afmeld = async (e) => {
     e.preventDefault();
 
+    // im good at naming :)
     const YesToAfmeld = await RunConfirmation(
       "Afmeld",
       "Er du sikker på du vil afmelde vores nyhedsbrev?"
@@ -42,7 +55,11 @@ const NewsLetter = () => {
     }
   };
 
+
+  // DELETE email from api
   const UnSubmit = () => {
+
+    // remove dubble spaces
     const trimmedEmail = email.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -56,6 +73,8 @@ const NewsLetter = () => {
     makeRequestAfmeld(`${APIURL}newssubscription/afmeld/${trimmedEmail}`, "DELETE");
   };
 
+
+  // response from POST
   useEffect(() => {
     if (data) {
       localStorage.setItem("NewsLetter", true);
@@ -68,6 +87,8 @@ const NewsLetter = () => {
     }
   }, [data]);
 
+
+  // response from DELETE
   useEffect(() => {
     if (dataAfmeld) {
       localStorage.removeItem("NewsLetter");
@@ -79,6 +100,9 @@ const NewsLetter = () => {
       setEmail("");
     }
   }, [dataAfmeld]);
+
+
+
 
   return (
     <section id="NewsLetter">

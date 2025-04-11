@@ -13,13 +13,20 @@ const Layout = () => {
 
   const location = useLocation();
 
+
+  // run when url updates
   useEffect(() => {
     if (location.pathname !== "/") {
+
+      // check the comment in LayoutAdmin.jsx
       const newPageTitle = `SpaceVenture - ${location.pathname.slice(1).split("/").join(" - ").replace("%C3%A6", "æ")}`;
       document.title = newPageTitle;
     } else {
       document.title = "SpaceVenture - hjem";
     }
+
+
+    // go to top
     window.scrollTo({
       top: 0,
       left: 0,

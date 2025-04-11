@@ -10,12 +10,9 @@ const Info = ({ title, img, api, links, local }) => {
     const APIURL = import.meta.env.VITE_APP_API;
     const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
-    const {
-        makeRequest: makeRequestOm,
-        isLoading: isLoadingOm,
-        data: dataOm,
-        error: errorOm,
-    } = useRequstData();
+    
+    const { makeRequest: makeRequestOm, isLoading: isLoadingOm, data: dataOm, error: errorOm } = useRequstData();
+
 
     useEffect(() => {
         makeRequestOm(`${APIURL}${api}`, "GET");

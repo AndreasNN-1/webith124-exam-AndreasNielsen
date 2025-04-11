@@ -11,16 +11,15 @@ import { NavLink } from "react-router-dom";
 const TureAdmin = () => {
     const APIURL = import.meta.env.VITE_APP_API;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
-    const {
-        makeRequest: makeRequest,
-        isLoading: isLoading,
-        data: data,
-        error: error,
-    } = useRequstData();
 
+    const { makeRequest: makeRequest, isLoading: isLoading, data: data, error: error } = useRequstData();
+
+    
+    // get data
     useEffect(() => {
         makeRequest(`${APIURL}tours`, "GET");
     }, []);
+
     return (
         <section id="TureAdmin">
             <Banner custom={{ img: "TureAdminBanner.jpg", text: "Alle ture" }} />

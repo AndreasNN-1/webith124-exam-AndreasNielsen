@@ -11,9 +11,18 @@ import "quill/dist/quill.snow.css";
 import "./quill.scss";
 
 const EditRumfærgenAdmin = () => {
+    const { RunNotification } = useContext(NotificationContext);
+
     const APIURL = import.meta.env.VITE_APP_API;
     const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
 
+    const navigate = useNavigate();
+    const [editData, setEditData] = useState({ title: "", image: null, content: "", });
+
+    const { makeRequest, isLoading, data, error } = useRequstData();
+    const { makeRequest: makeRequestPUT, isLoading: isLoadingPUT, data: dataPUT, error: errorPUT } = useRequstData();
+
+    // quill editer
     const refQuillContainer = useRef();
     const refQuill = useRef();
     const quillOptions = {
@@ -32,76 +41,71 @@ const EditRumfærgenAdmin = () => {
         },
     };
 
-    const navigate = useNavigate();
 
-    const { RunNotification } = useContext(NotificationContext);
-    const { makeRequest, isLoading, data, error } = useRequstData();
-    const { makeRequest: makeRequestPUT, isLoading: isLoadingPUT, data: dataPUT, error: errorPUT } = useRequstData();
-    const [editData, setEditData] = useState({
-        title: "",
-        image: null,
-        content: "",
-    });
 
+    // get data
     useEffect(() => {
         makeRequest(`${APIURL}spacecraft`, "GET");
     }, []);
 
+
+    // run when data value updates the set data
     useEffect(() => {
         if (data) {
             setEditData(data);
         }
+        // start quill in the div
         if (!refQuill.current && data) {
             refQuill.current = new Quill(refQuillContainer.current, quillOptions);
         }
     }, [data]);
 
+
+    // set value using name
     const handleChange = (name, value) => {
         setEditData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // update
 
+
+    // update
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (
+            // check for errors
             editData.title?.trim() == "" ||
             refQuill.current == "" ||
             editData.image == null
         ) {
-            RunNotification(
-                400,
-                "tomme felter",
-                "Venligst udfyld alle felter i formen"
-            );
+            RunNotification(400, "tomme felter", "Venligst udfyld alle felter i formen");
             return;
         }
+
+
         let formData = new FormData();
 
+        // if data add to form
         if (editData.title) formData.append("title", editData.title);
         if (refQuill.current) formData.append("content", refQuill.current.getSemanticHTML().replace(/&nbsp;/g, " "));
         if (editData.image instanceof File) formData.append("image", editData.image);
 
+
+        // send
         makeRequestPUT(`${APIURL}spacecraft/admin`, "PUT", formData);
     };
 
+
+
+    // PUT response
     useEffect(() => {
         if (dataPUT) {
             RunNotification(200, "opdateret!", "Rumfærgen er nu opdateret");
-            setEditData({
-                title: "",
-                image: null,
-                content: "",
-            });
+            setEditData({ title: "", image: null, content: "" });
             navigate("/admin/rumfærgen");
         }
         if (errorPUT) {
-            RunNotification(
-                400,
-                "opdatering fejlet",
-                "Der opstod en fejl under opdateringen af Rumfærgen"
-            );
+            RunNotification(400, "opdatering fejlet", "Der opstod en fejl under opdateringen af Rumfærgen");
         }
     }, [dataPUT, errorPUT]);
 

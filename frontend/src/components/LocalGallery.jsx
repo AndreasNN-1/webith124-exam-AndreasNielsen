@@ -10,6 +10,8 @@ const LocalGallery = () => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+
+    // open lightbox commpont
     const handleImageClick = (index) => {
         setCurrentIndex(index);
         setLightboxOpen(true);

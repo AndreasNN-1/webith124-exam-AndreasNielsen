@@ -8,6 +8,7 @@ const useRequstData = () => {
     const [error, setError] = useState(false)
 
     const makeRequest = async (url, method = "GET", bodydata = null, headers = null, params = null) => {
+        // start loading
         setIsLoading(true);
 
         try {
@@ -17,6 +18,8 @@ const useRequstData = () => {
                 params,
                 withCredentials: true,
               };
+
+              // find what case to use with method
             switch (method) {
                 case "GET":
                     response = await axios.get(url, config);
@@ -34,18 +37,25 @@ const useRequstData = () => {
                     response = await axios.patch(url, bodydata, config);
                     break;
                 default:
+                    // none match sorry
                     throw new Error("Invalid method. GET, POST, PUT, DELETE or PATCH was expected");
             }
+
+            // send over data
             setData(response.data);
             setError(null);
         } catch (error) {
+             // send over an error :)
             setError("There was an error: " + error.message);
             setData(null);
         } finally {
+            // FINALLY stop loading...
             setIsLoading(false);
         }
     };
 
+
+    // return values to commponts
     return { makeRequest, isLoading, data, error };
 }
 

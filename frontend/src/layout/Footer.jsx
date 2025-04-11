@@ -3,16 +3,7 @@ import "./Footer.scss";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import useRequstData from "../hooks/useRequstData";
-import {
-  FaFacebookF,
-  FaGooglePlusG,
-  FaInstagram,
-  FaRegCopyright,
-  FaTwitter,
-  FaDirections,
-  FaBuilding,
-  FaClock,
-} from "react-icons/fa";
+import { FaFacebookF, FaGooglePlusG, FaInstagram, FaRegCopyright, FaTwitter, FaDirections, FaBuilding, FaClock } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoMdMail, IoIosArrowDown } from "react-icons/io";
 import { LoginContext } from "../context/LoginContext";
@@ -21,13 +12,23 @@ import { GoDotFill } from "react-icons/go";
 
 const Footer = () => {
   const { user } = useContext(LoginContext);
-  const { makeRequest, isLoading, data, error } = useRequstData();
-  const [show, setShow] = useState(false);
+
   const APIURL = import.meta.env.VITE_APP_API;
+
+  const [show, setShow] = useState(false);
+
+  const { makeRequest, isLoading, data, error } = useRequstData();
+
+
+  // get cool data
   useEffect(() => {
     makeRequest(`${APIURL}footer`, "GET");
   }, []);
 
+
+
+
+  // scroll to top of page
   const ToTop = () => {
     window.scrollTo({
       top: 0,
@@ -35,12 +36,14 @@ const Footer = () => {
     });
   };
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const totalHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercentage = (scrollY / totalHeight) * 100;
 
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY;    // px from true top
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;    // html tag hight - the view hight
+    const scrollPercentage = (scrollY / totalHeight) * 100;    // both values * 100 gives a %
+
+    // scrollPercentage is bigger the 75% show ToTop btn
     if (scrollPercentage > 75) {
       setShow(true);
     } else {
@@ -48,10 +51,19 @@ const Footer = () => {
     }
   };
 
+
+
+
   useEffect(() => {
+    // add addEventListener
     window.addEventListener("scroll", handleScroll);
+
+    // remove removeEventListener when comp is gone
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+
+
   return (
     <footer>
       <button

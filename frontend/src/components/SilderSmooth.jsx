@@ -7,36 +7,53 @@ import Error from "./Error";
 const SilderSmooth = () => {
   const APIURL = import.meta.env.VITE_APP_API;
   const APISTORAGE = import.meta.env.VITE_APP_API_STORAGE;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animeOut, setAnimeOut] = useState(null);
-  const { makeRequest, isLoading, data, error } = useRequstData();
   const Timer = useRef(null);
+
+  const { makeRequest, isLoading, data, error } = useRequstData();
 
   useEffect(() => {
     makeRequest(`${APIURL}banner`, "GET");
   }, []);
 
+  
+
+  // auto next
   const NextSilde = () => {
     if (data) {
+      // idk why but the ANimeOut is not working here plz fix
       ANimeOut();
       setCurrentIndex((prev) => (prev + 1) % data.length);
     }
   };
+
+    // set ANimeOut class on currentIndex before updaying
   const ANimeOut = () => {
     setAnimeOut(currentIndex);
   };
 
+
   useEffect(() => {
+
+    // set Interval
     Timer.current = setInterval(NextSilde, 10000);
 
+    // remove Interval
     return () => {
       clearInterval(Timer.current);
     };
   }, [data]);
 
+
+
   const handleSliderEvent = (index) => {
-    ANimeOut();
+
+    ANimeOut(); // works here tho... idk bro
     setCurrentIndex(index);
+
+    // reset timer
     clearInterval(Timer.current);
     Timer.current = setInterval(NextSilde, 10000);
   };

@@ -4,6 +4,7 @@ import "./Banner.scss";
 
 const Banner = ({ silder, custom }) => {
     const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
+    
     return (
         <section id="banner">
             {silder &&

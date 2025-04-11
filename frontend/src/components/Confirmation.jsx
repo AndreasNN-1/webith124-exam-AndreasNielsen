@@ -4,11 +4,14 @@ import "./Confirmation.scss";
 const Confirmation = ({ ConfirmationData, ConfirmationOutput }) => {
   const confirmationRef = useRef(null);
 
+
+  // check if Confirmation-container is clicked = Canceled
   const handleBackgroundClick = (e) => {
     if (!confirmationRef.current?.contains(e.target)) {
-      ConfirmationOutput("Canceled");
+      ConfirmationOutput(false);
     }
   };
+  
 
   return (
     <div className="Confirmation-container" onClick={handleBackgroundClick}>
@@ -18,8 +21,8 @@ const Confirmation = ({ ConfirmationData, ConfirmationOutput }) => {
           <p>{ConfirmationData.text}</p>
         </div>
         <div className="actions">
-          <button onClick={() => ConfirmationOutput("Confirmed")}>ja</button>
-          <button onClick={() => ConfirmationOutput("Canceled")}>nej</button>
+          <button onClick={() => ConfirmationOutput(true)}>ja</button>
+          <button onClick={() => ConfirmationOutput(false)}>nej</button>
         </div>
       </div>
     </div>

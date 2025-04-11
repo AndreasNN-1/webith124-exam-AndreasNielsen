@@ -7,34 +7,26 @@ import Error from "./Error";
 
 const KontaktForm = () => {
   const { RunNotification } = useContext(NotificationContext);
-  const APIURL = import.meta.env.VITE_APP_API;
-  const [send, setSend] = useState(false);
-  const msgSend = sessionStorage.getItem("msgSend");
-  const {
-    makeRequest: makeRequest,
-    isLoading: isLoading,
-    data: data,
-    error: error,
-  } = useRequstData();
-  const [fromData, setFromData] = useState({
-    name: "",
-    email: "",
-    tlf: "",
-    msg: "",
-  });
-  const [fromError, setFromError] = useState({
-    name: false,
-    email: false,
-    tlf: false,
-    msg: false,
-  });
 
+  const APIURL = import.meta.env.VITE_APP_API;
+  const msgSend = sessionStorage.getItem("msgSend");
+
+  const { makeRequest: makeRequest, isLoading: isLoading, data: data, error: error } = useRequstData();
+
+  const [send, setSend] = useState(false);
+  const [fromData, setFromData] = useState({ name: "", email: "", tlf: "", msg: "" });
+  const [fromError, setFromError] = useState({ name: false, email: false, tlf: false, msg: false });
+
+
+  // check if send
   useEffect(() => {
     if (msgSend) {
       setSend(msgSend);
     }
   }, []);
 
+
+  // update fromData by name
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFromData((prev) => ({
@@ -43,6 +35,8 @@ const KontaktForm = () => {
     }));
   };
 
+
+  // gives eerror to name if not valit
   const handleError = (name) => {
     setFromError((prev) => ({
       ...prev,
@@ -52,35 +46,24 @@ const KontaktForm = () => {
 
   const Submit = (e) => {
     e.preventDefault();
+
+    // remvoe dubble spaces
     const trimmedName = fromData.name.trim();
     const trimmedEmail = fromData.email.trim();
     const trimmedTlf = fromData.tlf.trim();
     const trimmedMsg = fromData.msg.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    setFromError({
-      name: false,
-      email: false,
-      tlf: false,
-      msg: false,
-    });
 
-    if (trimmedName === "") {
-      handleError("name");
-      return;
-    }
-    if (!emailRegex.test(trimmedEmail) || trimmedEmail === "") {
-      handleError("email");
-      return;
-    }
-    if (trimmedTlf === "") {
-      handleError("tlf");
-      return;
-    }
-    if (trimmedMsg === "") {
-      handleError("msg");
-      return;
-    }
+    // error false
+    setFromError({ name: false, email: false, tlf: false, msg: false });
+
+
+    // test valit
+    if (trimmedName === "") { handleError("name"); return; }
+    if (!emailRegex.test(trimmedEmail) || trimmedEmail === "") { handleError("email"); return; }
+    if (trimmedTlf === "") { handleError("tlf"); return; }
+    if (trimmedMsg === "") { handleError("msg"); return; }
 
     const SendData = {
       name: fromData.name,
@@ -89,24 +72,19 @@ const KontaktForm = () => {
       message: fromData.msg,
     };
 
+
+    // send
     makeRequest(`${APIURL}contact`, "POST", SendData);
   };
 
+
+  // response
   useEffect(() => {
     if (error) {
-      RunNotification(
-        400,
-        "Beskedet fejl",
-        "Vi kendte desværre ikke sende din besked men hvis du bliver ved med at opleve problemer men mest kontakte vores support"
-      );
+      RunNotification(400, "Beskedet fejl", "Vi kendte desværre ikke sende din besked men hvis du bliver ved med at opleve problemer men mest kontakte vores support");
     }
     if (data) {
-      setFromData({
-        name: "",
-        email: "",
-        tlf: "",
-        msg: "",
-      });
+      setFromData({ name: "", email: "", tlf: "", msg: "" });
       setSend(true);
       sessionStorage.setItem("msgSend", true);
       RunNotification(200, "Send!", "Dit besked er nu hernede sendt");
