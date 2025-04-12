@@ -9,7 +9,7 @@ const UserBanner = () => {
     
     return (
         <section id="UserBanner">
-            <img src={`${APPSTORAGE}userbanner.jpg`} alt="" />
+            <img src={`${APPSTORAGE}userbanner.jpg`} alt="userbanner" />
             <div className='banner-texts'>
                 <h2 className="banner-title">Hi {user ? user.name : "user"}</h2>
             </div>

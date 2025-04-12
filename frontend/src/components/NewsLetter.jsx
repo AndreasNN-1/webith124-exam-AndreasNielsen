@@ -8,6 +8,7 @@ const NewsLetter = () => {
   const { RunNotification, RunConfirmation } = useContext(NotificationContext);
 
   const APIURL = import.meta.env.VITE_APP_API;
+  const APPSTORAGE = import.meta.env.VITE_APP_STORAGE;
   const joined = localStorage.getItem("NewsLetter");
 
   const [email, setEmail] = useState("");
@@ -106,7 +107,7 @@ const NewsLetter = () => {
 
   return (
     <section id="NewsLetter">
-      <img className="bg-img" src="/SiteAssets/images/newsmail-bg.jpg" alt="nyhedsbrev baggrundsbillede" />
+      <img className="bg-img" src={`${APPSTORAGE}newsmail-bg.jpg`} alt="nyhedsbrev baggrundsbillede" />
       {joined ? (
         <div className="NewsLetter-container">
           <h4>Du har tilmeldt dig og får 25% rabat</h4>

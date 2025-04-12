@@ -9,7 +9,7 @@
 **Afleveringsdato:** 5/12/2025
 
 **Bekræftelse:**  
-_Jeg bekræfter hermed, at jeg selvstændigt og uden brug af AI og hjælp fra andre har udviklet det afleverede eksamensprojekt._
+_Jeg bekræfter hermed, at jeg selvstændigt og uden hjælp fra andre og uden brug af AI har udviklet det afleverede eksamensprojekt._
 
 ![Underskrift](./public/reportImages/image.png)
 
@@ -17,10 +17,15 @@ _Jeg bekræfter hermed, at jeg selvstændigt og uden brug af AI og hjælp fra an
 
 ## Indledning
 
-- Intro
-- fdsfsd
-- fdsfds
-- fsdf
+- Jeg er meget tilfreds med min indsats jeg kunne godt have været bedre på min tidsstruktur Men  udenfor det, vil jeg sige Jeg har arbejdet godt og effektivt
+#### list ####
+- Indledning
+- Tech Stack
+- Test Oplysninger
+- Tidsplan, Estimat og To-Do Liste
+- Mine valg
+- Tilvalgsopgaver
+- bilage
 
 ---
 
@@ -66,7 +71,8 @@ Jeg har organiseret min opgave vha. Trello, hvor jeg har planlagt opgaver, estim
 
 - [Trello link](https://trello.com/invite/b/67e12ca3a50b2cc085bf3cd4/ATTI432c7b37cccf9538f3fdbc659e7567a8DC2390A2/webith124-andreasnielsen)
 
-**Github link:** [min Github](http://localhost:5173/)
+**Github link:** 
+- [min Github](https://github.com/AndreasNN-1/webith124-exam-AndreasNielsen) `public efter:  søndag formiddag`
 
 **Tidsplan, Estimat**
 
@@ -79,8 +85,15 @@ Jeg har organiseret min opgave vha. Trello, hvor jeg har planlagt opgaver, estim
 | **Dag: 3**     |    Jeg er i gang med at få slideren til at virke i galleri componentet og Det går meget stille og roligt, jeg har nu stylet en del af det og sat error handling op og er næsten færdig      |   Jeg har siddet en del fast nu på at finde en måde at registrere om useren resizer skærm, men har fundet en god metode at gøre det med en use State og en eventlessner, den er god på grund af jeg kan implementere den Flere steder hvis jeg har brug for det     |   Jeg har tilføjet en basic SEO struktur i html.index-filen Jeg vender tilbage til den senere Jeg gider ikke at arbejde på den lige nu,  Jeg har siddet og rykket rundt i en del af stylingen og er usikker på hvilken måde jeg skal sætte det op med sections og artikler Jeg prøver at Google lidt rundt, Jeg gav op på det og begyndte at fokusere på local Gallery og lightboxen til det    |
 | **Dag: 4**     |   jeg har nu fået sat en del op Det er meget kørende, Jeg har implementeret nogle nye bannere til de andre sider da jeg synes det vil passe meget godt og har tilføjet selectedTour til udvalgtur page,      |   Jeg har implementeret Dompurify og rykket rundt på titelstrukturen så det er nemmere at sætte op for search engines og så videre.. Jeg har også fået redigeret i headeren og footeren, så de passer mere til designet og funktionaliteten matcher    |   Jeg har fået en permitteret quill og sat det generelle redigeringer op i admin, opdatering!:  jeg har nu tilføjet Siden hvor man kan redigere turene og et component til at uploade, Jeg kunne ikke få det til at virke med at uploade det som et component og jeg føler at det vil være lettere hvis jeg laver det til pages i stedet for. opdatering igen: jeg har nu fået det meste af redigeringer og uploade til at virke på ture som er ekstremt fedt!     |
 | **Dag: 5**     |    Det går sgu meget godt Jeg har fået quill setup, bortset fra at jeg har fået en del Errors Jeg har spurgt videre og fundet ud af at det er en forkert version Jeg bruger og jeg prøver at se om jeg kan fikse det og da jeg har arbejdet alene Har det været svært at få svar på nogle af de ting som jeg var usikker på men jeg er begyndt at få svar på dem Så jeg begynder at lave ændringer til det    |   jeg har nu fået alle delene i footeren og headeren til at virke, som er super fedt og åbenbart var der fejl med på position sticky som jeg brugte en del tid på og Generelt funktionaliteten er at få harmonika menuen til at åbne Jeg har brugt det meste af tiden på at redigere fejl og ting, der enten var for komplicerede eller kunne forenkles.     |   Ja nu begyndte lige så stille og redigere små detaljer og tjekke af alt folk somaliteten virker Jeg har opdagede nogle fejl med post som jeg gerne skulle have fikset og begynder at er det kommentarer til min kode så jeg kan forstå den NOTE!  Jeg tilføjer en del kommentarer på grund af at jeg har hukommelsesproblemer og hukommelsesbesvær så det er for at hjælpe mig med at huske det meste om en uge eller to. og jeg begynder også på at færdiggøre min rapport   |
-| **Dag: 6**     |    ADD    |   fds     |   fds     |
+| **Dag: 6**     |    Jeg prøver at færdiggøre det sidste dele i rapporten og dobbelttjek alle mine filer for at være sikker på jeg ikke har mangle noget og så videre    |   Jeg føler at jeg er færdiggjort rapporten og har en lille smule ekstra tid tilbage til at prøve at lave nogle er ekstra opgaverne Jeg føler jeg kan nå Vi ser hvad der sker og derefter afleverer     |  Afleveret.      |
 
+---
+
+
+## Mine valg 
+- Jeg har valgt at tilføje funktionaliteten til dynamisk at opdatere dokumenttitlen og have bannerkomponenten til at være på de fleste sider for at bevare en vis konsistens for brugeren.
+- Jeg har valgt at tilføje mit notifikations komponent ofte på siden og specielt på admin for bedre feedback til brugeren
+- Jeg endte også med at tage valget at ændre min Quill editer (fra react-quill => quill ) da react-quill ikke længere er understøttet / holdt fornyet, det virker i version Jeg arbejder med kunne det give flere problemer i fremtiden.
 ---
 
 ## Tilvalgsopgaver
@@ -92,10 +105,21 @@ Jeg har organiseret min opgave vha. Trello, hvor jeg har planlagt opgaver, estim
 - se: `CountdownTimer.jsx` og `Trips.jsx` commponts
 #### Giv mulighed for at rate ★ ★ ★ ★ ★
 - Jeg tilføjer en rating ved at lave en Array og map det map det ud og tjekke hvis indexet er højere rating. 
-- ![alt text](./public/reportImages/rating.png)
+- ![rating](./public/reportImages/rating.png)
 - se: `SelectedTure.jsx` commpont
 #### Login – authentication (Session-cookie)
 - Jeg har tilføjet login funktionalitet som vi har lært men jeg også Har eksperimenteret med og jeg vil sige jeg har fået et godt resultat ud af det
 - se: `LoginContext.jsx` commpont
 
 ## bilage
+- Jeg er glad for hvad jeg har sat op med funktionaliteten af notifikationer
+- ![alt text](./public/reportImages/lol.png)
+
+### mine kilder ###
+- developer mozilla = [Developer mozilla](https://developer.mozilla.org/)
+- stack overflow = [Stackoverflow](https://stackoverflow.com)
+- w3schools = [W3schools](https://www.w3schools.com/)
+- Tutorials = [Youtube](https://www.youtube.com/)
+
+
+- `Jeg ved ikke rigtig hvad jeg ellers kan tilføje men tak for at læse mit dokumentet :)`

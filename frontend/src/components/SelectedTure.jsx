@@ -34,8 +34,8 @@ const SelectedTure = () => {
       {data && (
         <div className="ship">
           <div className="trip-images">
-            <img src={`${APISTORAGE}tours/${data.image1}`} alt="" />
-            <img src={`${APISTORAGE}tours/${data.image2}`} alt="" />
+            <img src={`${APISTORAGE}tours/${data.image1}`} alt={data.image1} />
+            <img src={`${APISTORAGE}tours/${data.image2}`} alt={data.image2} />
           </div>
           <div className="trip-info">
             <div className="price">

@@ -43,7 +43,7 @@ const Lightbox = ({ data, starter, onclose }) => {
 
                 <img
                     src={`${APPSTORAGE}galleri/${data[currentIndex]}`}
-                    alt={`${currentIndex}`}
+                    alt={`billede ${currentIndex}`}
                     className="lightbox-image"
                 />
 

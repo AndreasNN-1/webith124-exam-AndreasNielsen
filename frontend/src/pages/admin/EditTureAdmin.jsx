@@ -224,6 +224,7 @@ const EditTureAdmin = () => {
                   id="Title"
                   type="text"
                   className="text"
+                  minLength={3}
                   onChange={(e) => handleChange("title", e.target.value)}
                 />
               </label>
@@ -244,6 +245,7 @@ const EditTureAdmin = () => {
                   disabled={isLoading || isLoadingDELETE || isLoadingPUT}
                   id="Pris"
                   type="text"
+                  minLength={3}
                   onChange={(e) => handleChange("price", e.target.value)}
                 />
               </label>
@@ -267,6 +269,7 @@ const EditTureAdmin = () => {
                   id="traveltime"
                   type="text"
                   className="text"
+                  minLength={3}
                   onChange={(e) => handleChange("traveltime", e.target.value)}
                 />
               </label>
@@ -279,6 +282,7 @@ const EditTureAdmin = () => {
                   id="destination"
                   type="text"
                   className="text"
+                  minLength={3}
                   onChange={(e) => handleChange("destination", e.target.value)}
                 />
               </label>

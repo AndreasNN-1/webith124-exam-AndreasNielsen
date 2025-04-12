@@ -26,7 +26,7 @@ const Team = () => {
             <div key={index} className="member">
               <div className="profile-img">
                 <figure className="profile-con">
-                  <img src={`${APISTORAGE}team/${team.image}`} alt="" />
+                  <img src={`${APISTORAGE}team/${team.image}`} alt={team.name} />
                 </figure>
               </div>
               <div className="member-info">

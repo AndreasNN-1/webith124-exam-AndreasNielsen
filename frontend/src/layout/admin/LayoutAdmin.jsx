@@ -11,7 +11,6 @@ const LayoutAdmin = () => {
 
   // set pages titles
   useEffect(() => {
-    console.log(location.pathname.slice(0));
     // remove frist / then make the sections into an array the join the array back to one with - then replace %C3%A6 with æ     
     // NOTE idk why it makes it say %C3%A6 
     const newPageTitle = location.pathname.slice(1).split("/").join(" - ").replace("%C3%A6", "æ");

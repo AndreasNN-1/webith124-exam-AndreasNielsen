@@ -27,7 +27,7 @@ const Info = ({ title, img, api, links, local }) => {
                 {dataOm && (
                     <>
                         <div className="Info-img-con">
-                            <img src={local ? `${APPSTORAGE}${img}` : `${APISTORAGE}spacecraft/${dataOm.image}`} alt="om-os" />
+                            <img src={local ? `${APPSTORAGE}${img}` : `${APISTORAGE}spacecraft/${dataOm.image}`} alt="billede om os" />
                         </div>
                         <div className="content">
                             {title && <h3>{title}</h3>}

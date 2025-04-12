@@ -148,6 +148,7 @@ const EditRumfærgenAdmin = () => {
                                     id="Title"
                                     type="text"
                                     className="text"
+                                    minLength={3}
                                     onChange={(e) => handleChange("title", e.target.value)}
                                 />
                             </label>

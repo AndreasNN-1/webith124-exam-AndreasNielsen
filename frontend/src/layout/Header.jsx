@@ -33,144 +33,148 @@ const Header = () => {
 
   return (
     <header>
-      <div className="top-container">
-        <div className="burger-menu-container">
-          <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={() => setIsMobileMenuActive(!isMobileMenuActive)}>
-            <div className="bar" />
-            <div className="bar" />
-            <div className="bar" />
+      <div className="max-container">
+        <div className="top-container">
+          <div className="burger-menu-container">
+            <div className={`burger-menu ${isMobileMenuActive ? 'active' : ''}`} aria-label="Menu" onClick={() => setIsMobileMenuActive(!isMobileMenuActive)}>
+              <div className="bar" />
+              <div className="bar" />
+              <div className="bar" />
+            </div>
           </div>
+          <NavLink to="/" className="logo">
+            <img src="/SiteAssets/icons/logo.png" alt="logo" />
+          </NavLink>
         </div>
-        <NavLink to="/" className="logo">
-          <img src="/SiteAssets/icons/logo.png" alt="logo" />
-        </NavLink>
       </div>
-      <nav className={isMobileMenuActive ? 'active' : ''}>
-        <menu>
-          <li>
-            <NavLink
-              to="/"
-              onClick={() => CloseMobileMenu()}
-              className={({ isActive }) => (isActive ? "active" : "")}>
-              <div className="bar" />
-              <span>Hjem</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/rumfærgen"
-              onClick={() => CloseMobileMenu()}
-              className={({ isActive }) => (isActive ? "active" : "")}>
-              <div className="bar" />
-              <span>Rumfærgen</span>
-            </NavLink>
-          </li>
-          <li className="extra">
-            <div>
+      <div className="nav-max-container">
+        <nav className={isMobileMenuActive ? 'active' : ''}>
+          <menu>
+            <li>
               <NavLink
-                to="/ture"
+                to="/"
                 onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <div className="bar" />
-                <span>Ture</span>
+                <span>Hjem</span>
               </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/rumfærgen"
+                onClick={() => CloseMobileMenu()}
+                className={({ isActive }) => (isActive ? "active" : "")}>
+                <div className="bar" />
+                <span>Rumfærgen</span>
+              </NavLink>
+            </li>
+            <li className="extra">
+              <div>
+                <NavLink
+                  to="/ture"
+                  onClick={() => CloseMobileMenu()}
+                  className={({ isActive }) => (isActive ? "active" : "")}>
+                  <div className="bar" />
+                  <span>Ture</span>
+                </NavLink>
 
-              <button className={`dropdown ${dropdown ? "active" : ""}`} onClick={() => setDropdown(!dropdown)}>
-                <IoIosArrowDown />
-              </button>
-            </div>
-            <ul className={`extra-links ${dropdown ? "active" : ""}`}>
-              {data && data.length > 0 ? (
-                data.slice(0, 3).sort((a, b) => { return new Date(a.spacelaunch) - new Date(b.spacelaunch) }).map((item, index) => (
-                  <li key={index}>
+                <button className={`dropdown ${dropdown ? "active" : ""}`} onClick={() => setDropdown(!dropdown)}>
+                  <IoIosArrowDown />
+                </button>
+              </div>
+              <ul className={`extra-links ${dropdown ? "active" : ""}`}>
+                {data && data.length > 0 ? (
+                  data.slice(0, 3).sort((a, b) => { return new Date(a.spacelaunch) - new Date(b.spacelaunch) }).map((item, index) => (
+                    <li key={index}>
+                      <NavLink
+                        to={`/ture/${item._id}`}
+                        onClick={() => CloseMobileMenu()}
+                        className={({ isActive }) => (isActive ? "active" : "")}>
+                        {item.destination}
+                      </NavLink>
+                    </li>
+                  ))
+                ) : (
+                  <li><span>Ingen ture</span></li>
+                )}
+                {data && data.length >= 4 && (
+                  <li>
                     <NavLink
-                      to={`/ture/${item._id}`}
+                      to="/ture"
                       onClick={() => CloseMobileMenu()}
                       className={({ isActive }) => (isActive ? "active" : "")}>
-                      {item.destination}
+                      Se Alle
                     </NavLink>
                   </li>
-                ))
-              ) : (
-                <li><span>Ingen ture</span></li>
-              )}
-              {data && data.length >= 4 && (
-                <li>
-                  <NavLink
-                    to="/ture"
-                    onClick={() => CloseMobileMenu()}
-                    className={({ isActive }) => (isActive ? "active" : "")}>
-                    Se Alle
-                  </NavLink>
-                </li>
-              )}
+                )}
 
-            </ul>
-          </li>
-          <li>
-            <NavLink
-              to="/galleri"
-              onClick={() => CloseMobileMenu()}
-              className={({ isActive }) => (isActive ? "active" : "")}>
-              <div className="bar" />
-              <span>Galleri</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sikkerhed"
-              onClick={() => CloseMobileMenu()}
-              className={({ isActive }) => (isActive ? "active" : "")}>
-              <div className="bar" />
-              <span>Sikkerhed</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/kontakt"
-              onClick={() => CloseMobileMenu()}
-              className={({ isActive }) => (isActive ? "active" : "")}>
-              <div className="bar" />
-              <span>Kontakt</span>
-            </NavLink>
-          </li>
-          {user ?
+              </ul>
+            </li>
             <li>
               <NavLink
-                to="/admin/dashboard"
+                to="/galleri"
                 onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <div className="bar" />
-                <span>Dashboard</span>
+                <span>Galleri</span>
               </NavLink>
             </li>
-            :
             <li>
               <NavLink
-                to="/login"
+                to="/sikkerhed"
                 onClick={() => CloseMobileMenu()}
                 className={({ isActive }) => (isActive ? "active" : "")}>
                 <div className="bar" />
-                <span>Login</span>
+                <span>Sikkerhed</span>
               </NavLink>
             </li>
-          }
-        </menu>
-        <div className="socials">
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-            <FaFacebookF />
-          </a>
-          <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
-            <FaTwitter />
-          </a>
-          <a href="https://support.google.com/" target="_blank" rel="noopener noreferrer">
-            <FaGooglePlusG />
-          </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-          </a>
-        </div>
-      </nav>
+            <li>
+              <NavLink
+                to="/kontakt"
+                onClick={() => CloseMobileMenu()}
+                className={({ isActive }) => (isActive ? "active" : "")}>
+                <div className="bar" />
+                <span>Kontakt</span>
+              </NavLink>
+            </li>
+            {user ?
+              <li>
+                <NavLink
+                  to="/admin/dashboard"
+                  onClick={() => CloseMobileMenu()}
+                  className={({ isActive }) => (isActive ? "active" : "")}>
+                  <div className="bar" />
+                  <span>Dashboard</span>
+                </NavLink>
+              </li>
+              :
+              <li>
+                <NavLink
+                  to="/login"
+                  onClick={() => CloseMobileMenu()}
+                  className={({ isActive }) => (isActive ? "active" : "")}>
+                  <div className="bar" />
+                  <span>Login</span>
+                </NavLink>
+              </li>
+            }
+          </menu>
+          <div className="socials">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+              <FaFacebookF />
+            </a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+              <FaTwitter />
+            </a>
+            <a href="https://support.google.com/" target="_blank" rel="noopener noreferrer">
+              <FaGooglePlusG />
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </a>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 };
