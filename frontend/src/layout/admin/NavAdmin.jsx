@@ -4,7 +4,7 @@ import { LoginContext } from "../../context/LoginContext";
 import { NotificationContext } from "../../context/NotificationContext";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaHome, FaRocket, FaShip } from "react-icons/fa";
-import { MdAccountBox, MdLogout } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import { LuPanelLeftClose } from "react-icons/lu";
 
 import "./NavAdmin.scss";
@@ -19,6 +19,7 @@ const NavAdmin = () => {
 
   // check window width when resizing the page
   useEffect(() => {
+
     const handleResize = () => {
       // set true / false
       setIsMobile(window.innerWidth < 767);

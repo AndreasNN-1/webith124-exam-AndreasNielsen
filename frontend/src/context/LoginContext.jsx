@@ -16,7 +16,13 @@ const LoginContextProvider = (props) => {
 
   // Check Log in
   useEffect(() => {
-    makeRequestClecklogin(`${APIURL}login/loggedin`, "GET");
+    // get url path name
+    const loca = window.location.pathname.split("/")[1];
+    if (loca === "login" || loca === "admin") {
+      makeRequestClecklogin(`${APIURL}login/loggedin`, "GET");
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {

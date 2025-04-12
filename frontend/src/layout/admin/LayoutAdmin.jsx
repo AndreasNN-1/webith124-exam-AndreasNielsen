@@ -15,7 +15,7 @@ const LayoutAdmin = () => {
     // NOTE idk why it makes it say %C3%A6 
     const newPageTitle = location.pathname.slice(1).split("/").join(" - ").replace("%C3%A6", "æ");
     document.title = newPageTitle;
-  }, [location]);
+  }, [location.pathname]);
 
 
   // check if user else go away
